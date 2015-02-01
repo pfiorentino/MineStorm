@@ -3,10 +3,9 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
-
+/**
+ * @brief La classe MainWindow crée un widget contenant un controller et un gameboard pour le game donné
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -16,7 +15,6 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H
