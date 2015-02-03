@@ -1,18 +1,33 @@
 #include "mainwindow.h"
 #include "gameboard.h"
-#include <QVBoxLayout>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+#include <QPalette>
+#include <QFont>
+#include <QLabel>
+
+MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
     auto window = new QWidget(this);
+    window->setAutoFillBackground(true);
+    window->setFixedSize(400, 600);
 
-    auto gameboard = new GameBoard(window);
-    gameboard->setSizePolicy(QSizePolicy ::Expanding , QSizePolicy ::Expanding);
+    QPalette pal(palette());
+    pal.setColor(QPalette::Background, Qt::black);
+    window->setPalette(pal);
 
+    auto gameboard = new GameBoard(game, window);
+    gameboard->setSizePolicy(QSizePolicy::Expanding , QSizePolicy::Expanding);
 
-    auto layout = new QVBoxLayout;
-    layout->addWidget(gameboard);
+    QLabel *scoreLabel = new QLabel(gameboard);
+    scoreLabel->setContentsMargins(10, 10, 10, 10);
+    scoreLabel->setStyleSheet("QLabel { color : rgb(220, 220, 220); }");
+    scoreLabel->setText("13 000");
+    scoreLabel->setAlignment(Qt::AlignBottom | Qt::AlignRight);
+    scoreLabel->setFont(QFont("Press Start 2P", 15));
 
-    window->setLayout(layout);
+//    auto layout = new QVBoxLayout;
+//    layout->addWidget(gameboard);
+
+//    window->setLayout(layout);
     setCentralWidget(window);
     show();
 }

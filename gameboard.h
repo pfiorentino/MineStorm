@@ -10,7 +10,7 @@ class GameBoard : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GameBoard(QWidget *parent = 0);
+    explicit GameBoard(Game *game, QWidget *parent = 0);
 
 signals:
 
@@ -18,8 +18,12 @@ public slots:
 
 
 protected:
+    void paintEvent(QPaintEvent *);
+    void keyPressEvent ( QKeyEvent * event );
+    void keyReleaseEvent ( QKeyEvent * event );
 
 private:
+    Game *_game;
 };
 
 #endif // GAMEBOARD_H

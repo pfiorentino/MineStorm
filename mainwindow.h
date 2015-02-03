@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+class Game;
 /**
  * @brief La classe MainWindow crée un widget contenant un controller et un gameboard pour le game donné
  */
@@ -11,7 +12,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(Game *game, QWidget *parent = 0);
     ~MainWindow();
 
 private:
