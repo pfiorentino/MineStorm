@@ -20,14 +20,16 @@ SOURCES += main.cpp\
     game.cpp \
     minestormgame.cpp \
     spaceship.cpp \
-    life.cpp
+    life.cpp \
+    mine.cpp
 
 HEADERS  += mainwindow.h \
     gameboard.h \
     game.h \
     minestormgame.h \
     spaceship.h \
-    life.h
+    life.h \
+    mine.h
 
 FORMS    +=
 

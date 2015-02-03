@@ -1,5 +1,6 @@
 #include "minestormgame.h"
 #include "spaceship.h"
+#include "mine.h"
 #include "life.h"
 
 #include <QPainter>
@@ -21,6 +22,15 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
     life.draw(painter, QPoint(380, 580));
     life.draw(painter, QPoint(365, 580));
     life.draw(painter, QPoint(350, 580));
+
+    Mine mine(1);
+    mine.draw(painter, QPoint(100, 400));
+
+    Mine mineMed(2);
+    mineMed.draw(painter, QPoint(50, 250));
+
+    Mine mineSmall(4);
+    mineSmall.draw(painter, QPoint(250, 250));
 }
 
 void MineStormGame::initialize() {
