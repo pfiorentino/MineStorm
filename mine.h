@@ -12,13 +12,11 @@ public:
     void mineSpawn();
     void mineMove();
     void mineEclose();
-    int getMinePositionX() const;
-    void setMinePositionX(int position);
-    int getMinePositionY() const;
-    void setMinePositionY(int position);
 private:
     int _size;
     QPoint position;
+    int moveX;
+    int moveY;
 };
 
 #endif // MINE_H
