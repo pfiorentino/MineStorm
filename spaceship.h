@@ -2,6 +2,8 @@
 #define SPACESHIP_H
 
 #include <QPainter>
+#include<math.h>
+#include "shipbullet.h"
 
 class SpaceShip
 {
@@ -10,15 +12,14 @@ public:
     ~SpaceShip();
     void draw(QPainter &painter);
     void spaceShipSpawn();
-    void spaceShipTurn();
+    void spaceShipTurnLeft();
+    void spaceShipTurnRight();
     void spaceShipMove();
-    void spaceShipFire();
-    int getSpaceShipPositionX() const;
-    void setSpaceShipPositionX(int pos);
-    int getSpaceShipPositionY() const;
-    void setSpaceShipPositionY(int pos);
+    void spaceShipFire(QPainter &painter);
 private:
+    QPolygon ship;
     QPoint position;
+    double angle;
 };
 
 #endif // SPACESHIP_H

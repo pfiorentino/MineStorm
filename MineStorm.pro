@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     minestormgame.cpp \
     spaceship.cpp \
     life.cpp \
-    mine.cpp
+    mine.cpp \
+    shipbullet.cpp
 
 HEADERS  += mainwindow.h \
     gameboard.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     minestormgame.h \
     spaceship.h \
     life.h \
-    mine.h
+    mine.h \
+    shipbullet.h
 
 FORMS    +=
 
