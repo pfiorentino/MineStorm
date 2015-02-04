@@ -31,6 +31,10 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
 
     Mine mineSmall(4,250,250);
     mineSmall.draw(painter);
+
+   /* for (int i=0; i<99999; i++) {
+    mine.mineMove(painter);
+    }*/
 }
 
 void MineStormGame::initialize() {

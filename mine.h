@@ -2,6 +2,7 @@
 #define MINE_H
 
 #include <QPainter>
+#include <QPolygon>
 
 class Mine
 {
@@ -17,6 +18,7 @@ private:
     QPoint position;
     int moveX;
     int moveY;
+    QPolygon mine;
 };
 
 #endif // MINE_H
