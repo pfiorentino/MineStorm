@@ -7,6 +7,11 @@ SpaceShip::SpaceShip()
 
 }
 
+SpaceShip::~SpaceShip()
+{
+
+}
+
 void SpaceShip::draw(QPainter &painter, QPoint position) {
     QPolygon ship;
 
@@ -26,3 +31,34 @@ void SpaceShip::draw(QPainter &painter, QPoint position) {
     painter.drawPath(path);
 }
 
+void SpaceShip::spaceShipSpawn(){
+
+}
+
+void SpaceShip::spaceShipTurn(){
+
+}
+
+void SpaceShip::spaceShipMove(){
+
+}
+
+void SpaceShip::spaceShipFire(){
+
+}
+
+int SpaceShip::getSpaceShipPositionX(){
+    return this->spaceShipPositionX;
+}
+
+void SpaceShip::setSpaceShipPositionX(int pos){
+    this->spaceShipPositionX = pos;
+}
+
+int SpaceShip::getSpaceShipPositionY(){
+    return this->spaceShipPositionY;
+}
+
+void SpaceShip::setSpaceShipPositionY(int pos){
+    this->spaceShipPositionY = pos;
+}
