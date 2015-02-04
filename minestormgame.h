@@ -12,11 +12,8 @@ public:
     virtual void draw(QPainter &painter, QRect &rect);
     void keyPressed( int key );
     void keyReleased( int key );
-    int getScore();
 private:
     void initialize();
-
-    int _score;
 };
 
 #endif // MINESTORMGAME_H

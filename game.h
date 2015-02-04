@@ -37,6 +37,9 @@ public:
      */
     void reset();
 
+    int getScore() const;
+    void setScore(int score);
+
     /**
      * @brief draw appelée pour afficher le jeu. Cette méthode doit être
      * implémentée par les classes dérivées
@@ -68,6 +71,7 @@ protected:
      * @brief initialize initialise ou réinitialise le jeu
      */
     virtual void initialize() = 0;
+    int _score;
 
 signals:
     void changed();

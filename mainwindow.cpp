@@ -1,9 +1,8 @@
 #include "mainwindow.h"
 #include "gameboard.h"
+#include "scorecontroller.h"
 
 #include <QPalette>
-#include <QFont>
-#include <QLabel>
 
 MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
     auto window = new QWidget(this);
@@ -17,12 +16,8 @@ MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
     auto gameboard = new GameBoard(game, window);
     gameboard->setSizePolicy(QSizePolicy::Expanding , QSizePolicy::Expanding);
 
-    QLabel *scoreLabel = new QLabel(gameboard);
-    scoreLabel->setContentsMargins(10, 10, 10, 10);
-    scoreLabel->setStyleSheet("QLabel { color : rgb(220, 220, 220); }");
-    scoreLabel->setText("13 000");
-    scoreLabel->setAlignment(Qt::AlignBottom | Qt::AlignRight);
-    scoreLabel->setFont(QFont("Press Start 2P", 15));
+    auto score = new ScoreController(game, gameboard);
+
 
 //    auto layout = new QVBoxLayout;
 //    layout->addWidget(gameboard);

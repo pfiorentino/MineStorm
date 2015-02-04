@@ -34,7 +34,7 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
 }
 
 void MineStormGame::initialize() {
-    _score = 0;
+    Game::_score = 0;
 }
 
 void MineStormGame::keyPressed( int key ) {
@@ -52,6 +52,4 @@ void MineStormGame::keyPressed( int key ) {
 void MineStormGame::keyReleased( int key ) {
 }
 
-int MineStormGame::getScore() {
-    return _score;
-}
+

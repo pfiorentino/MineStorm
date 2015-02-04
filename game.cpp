@@ -31,3 +31,11 @@ void Game::update() {
 bool Game::isRunning() const {
     return _isRunning;
 }
+
+int Game::getScore() const {
+    return _score;
+}
+
+void Game::setScore(int score) {
+    _score = score;
+}
