@@ -6,9 +6,9 @@
 class SpaceShip
 {
 public:
-    SpaceShip();
+    SpaceShip(int x, int y);
     ~SpaceShip();
-    void draw(QPainter &painter, QPoint position);
+    void draw(QPainter &painter);
     void spaceShipSpawn();
     void spaceShipTurn();
     void spaceShipMove();
@@ -17,6 +17,8 @@ public:
     void setSpaceShipPositionX(int pos);
     int getSpaceShipPositionY() const;
     void setSpaceShipPositionY(int pos);
+private:
+    QPoint position;
 };
 
 #endif // SPACESHIP_H

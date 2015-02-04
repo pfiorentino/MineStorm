@@ -2,9 +2,9 @@
 
 #include <QPolygon>
 
-SpaceShip::SpaceShip()
+SpaceShip::SpaceShip(int x, int y)
 {
-
+    this->position = QPoint(x,y);
 }
 
 SpaceShip::~SpaceShip()
@@ -12,9 +12,9 @@ SpaceShip::~SpaceShip()
 
 }
 
-void SpaceShip::draw(QPainter &painter, QPoint position) {
+void SpaceShip::draw(QPainter &painter) {
     QPolygon ship;
-
+    QPoint position = this->position;
     ship.append(QPoint(position.x()-10, position.y()));
     ship.append(QPoint(position.x()-10, position.y()+10));
     ship.append(QPoint(position.x(), position.y()));
@@ -45,20 +45,4 @@ void SpaceShip::spaceShipMove(){
 
 void SpaceShip::spaceShipFire(){
 
-}
-
-int SpaceShip::getSpaceShipPositionX(){
-    return this->spaceShipPositionX;
-}
-
-void SpaceShip::setSpaceShipPositionX(int pos){
-    this->spaceShipPositionX = pos;
-}
-
-int SpaceShip::getSpaceShipPositionY(){
-    return this->spaceShipPositionY;
-}
-
-void SpaceShip::setSpaceShipPositionY(int pos){
-    this->spaceShipPositionY = pos;
 }
