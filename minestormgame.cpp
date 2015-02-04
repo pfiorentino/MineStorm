@@ -15,22 +15,28 @@ MineStormGame::MineStormGame(QObject *parent):Game(parent)
 }
 
 void MineStormGame::draw(QPainter &painter, QRect &rect) {
-    SpaceShip ship;
-    ship.draw(painter, QPoint(200,300));
+    SpaceShip ship(200,300);
+    ship.draw(painter);
+
 
     Life life;
     life.draw(painter, QPoint(380, 580));
     life.draw(painter, QPoint(365, 580));
     life.draw(painter, QPoint(350, 580));
 
-    Mine mine(1);
-    mine.draw(painter, QPoint(100, 400));
+    Mine mine(1,100,400);
+    mine.draw(painter);
 
-    Mine mineMed(2);
-    mineMed.draw(painter, QPoint(50, 250));
+    Mine mineMed(2,50,250);
+    mineMed.draw(painter);
 
-    Mine mineSmall(4);
-    mineSmall.draw(painter, QPoint(250, 250));
+    Mine mineSmall(4,250,250);
+    mineSmall.draw(painter);
+
+
+    while(true){
+        ship.spaceShipMove();
+    }
 }
 
 void MineStormGame::initialize() {
