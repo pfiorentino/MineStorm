@@ -18,6 +18,7 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
     SpaceShip ship(200,300);
     ship.draw(painter);
 
+
     Life life;
     life.draw(painter, QPoint(380, 580));
     life.draw(painter, QPoint(365, 580));
@@ -32,9 +33,10 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
     Mine mineSmall(4,250,250);
     mineSmall.draw(painter);
 
-   /* for (int i=0; i<99999; i++) {
-    mine.mineMove(painter);
-    }*/
+
+    while(true){
+        ship.spaceShipMove();
+    }
 }
 
 void MineStormGame::initialize() {
