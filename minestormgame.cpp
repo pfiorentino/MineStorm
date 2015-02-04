@@ -34,9 +34,9 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
     mineSmall.draw(painter);
 
 
-    while(true){
-        ship.spaceShipMove();
-    }
+//    while(true){
+//        ship.spaceShipMove();
+//    }
 }
 
 void MineStormGame::initialize() {
