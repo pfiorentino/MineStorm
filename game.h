@@ -41,8 +41,7 @@ public:
     void setScore(int score);
 
     /**
-     * @brief draw appelée pour afficher le jeu. Cette méthode doit être
-     * implémentée par les classes dérivées
+     * @brief draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées
      * @param painter context d'affichage voir [la documentation Qt](http://doc.qt.io/qt-5/qpainter.html)
      * @param size taille de la zone dans laquelle peindre le jeu
      */
@@ -77,8 +76,8 @@ signals:
     void changed();
 
 private slots:
-
     void update();
+
 private:
     QTimer _timer;
     bool _isRunning;

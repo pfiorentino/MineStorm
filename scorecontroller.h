@@ -15,7 +15,7 @@ public:
 signals:
 
 public slots:
-    void change();
+    void refresh();
 
 private:
     Game *_game;

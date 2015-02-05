@@ -1,8 +1,7 @@
 #ifndef MINESTORMGAME_H
 #define MINESTORMGAME_H
 #include "game.h"
-
-using namespace std;
+#include "spaceship.h"
 
 class MineStormGame : public Game
 {
@@ -14,6 +13,7 @@ public:
     void keyReleased( int key );
 private:
     void initialize();
+    SpaceShip _ship;
 };
 
 #endif // MINESTORMGAME_H

@@ -1,5 +1,4 @@
 #include "minestormgame.h"
-#include "spaceship.h"
 #include "mine.h"
 #include "life.h"
 
@@ -15,9 +14,8 @@ MineStormGame::MineStormGame(QObject *parent):Game(parent)
 }
 
 void MineStormGame::draw(QPainter &painter, QRect &rect) {
-    SpaceShip ship(QPoint(200,300));
-    ship.draw(painter);
 
+    _ship.draw(painter);
 
     Life life;
     life.draw(painter, QPoint(380, 580));
@@ -32,11 +30,6 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
 
     Mine mineSmall(4, QPoint(250,250));
     mineSmall.draw(painter);
-
-
-//    while(true){
-//        ship.spaceShipMove();
-//    }
 }
 
 void MineStormGame::initialize() {
@@ -45,14 +38,15 @@ void MineStormGame::initialize() {
 
 void MineStormGame::keyPressed( int key ) {
     switch(key) {
-    case Qt::Key_1:
-        break;
-    case Qt::Key_2:
-        break;
-    case Qt::Key_3:
-        break;
-    case Qt::Key_4:
-        break;
+        case Qt::Key_Left:
+            _ship.turnLeft();
+            emit changed();
+            break;
+        case Qt::Key_Right:
+            _ship.turnRight();
+            Game::_score = _ship.getAngle();
+            emit changed();
+            break;
     }
 }
 void MineStormGame::keyReleased( int key ) {

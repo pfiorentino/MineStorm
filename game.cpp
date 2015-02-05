@@ -1,8 +1,8 @@
 #include "game.h"
 
 Game::Game(QObject *parent):QObject(parent), _isRunning(false){
-    _timer.setSingleShot(false);
-    connect(&_timer,SIGNAL(timeout()),this,SLOT(update()));
+    //_timer.setSingleShot(false);
+    //connect(&_timer,SIGNAL(timeout()),this,SLOT(update()));
 }
 
 void Game::start() {
@@ -23,9 +23,6 @@ void Game::reset(){
 }
 
 void Game::update() {
-    if( _isRunning == true ) {
-        emit changed();
-    }
 }
 
 bool Game::isRunning() const {
