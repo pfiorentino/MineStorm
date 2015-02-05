@@ -24,13 +24,13 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
     life.draw(painter, QPoint(365, 580));
     life.draw(painter, QPoint(350, 580));
 
-    Mine mine(1,100,400);
+    Mine mine(1, QPoint(100,400));
     mine.draw(painter);
 
-    Mine mineMed(2,50,250);
+    Mine mineMed(2, QPoint(50,250));
     mineMed.draw(painter);
 
-    Mine mineSmall(4,250,250);
+    Mine mineSmall(4, QPoint(250,250));
     mineSmall.draw(painter);
 
 

@@ -2,28 +2,22 @@
 
 #include <QPolygon>
 
-Mine::Mine(int size,int x,int y): _size(size)
-{
-    this->position = QPoint(x,y);
-    this->moveX = rand()%200 - 100; //Vitesse random entre -100 et 100  sur l'axe X
-    this->moveY = rand()%200 - 100;
-}
-
-Mine::~Mine()
-{
-
+Mine::Mine(int size, QPoint position): _size(size), _position(position) {
+    _speed.setX(rand()%200 - 100);
+    _speed.setY(rand()%200 - 100);
 }
 
 void Mine::draw(QPainter &painter) {
-    QPoint position = this->position;
-    this->mine.append(QPoint(position.x(), position.y()+(60/_size)));
-    this->mine.append(QPoint(position.x()-(15/_size), position.y()+(7/_size)));
-    this->mine.append(QPoint(position.x()-(45/_size), position.y()-(30/_size)));
-    this->mine.append(QPoint(position.x(), position.y()-(7/_size)));
-    this->mine.append(QPoint(position.x()+(45/_size), position.y()-(30/_size)));
-    this->mine.append(QPoint(position.x()+(15/_size), position.y()+(7/_size)));
+    QPolygon mine;
 
-    painter.drawPolygon(this->mine);
+    mine.append(QPoint(_position.x(), _position.y()+(60/_size)));
+    mine.append(QPoint(_position.x()-(15/_size), _position.y()+(7/_size)));
+    mine.append(QPoint(_position.x()-(45/_size), _position.y()-(30/_size)));
+    mine.append(QPoint(_position.x(), _position.y()-(7/_size)));
+    mine.append(QPoint(_position.x()+(45/_size), _position.y()-(30/_size)));
+    mine.append(QPoint(_position.x()+(15/_size), _position.y()+(7/_size)));
+
+    painter.drawPolygon(mine);
 }
 
 void Mine::mineSpawn(){
