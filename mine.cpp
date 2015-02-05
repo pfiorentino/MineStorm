@@ -20,16 +20,16 @@ void Mine::draw(QPainter &painter) {
     painter.drawPolygon(mine);
 }
 
-void Mine::mineSpawn(){
+void Mine::spawn(){
 
 }
 
-void Mine::mineMove(){
+void Mine::move(){
     //QPoint position = this->position;
     //this->position = QPoint(position.x()+this->moveX,position.y()+this->moveY);
     //painter.drawPolygon(this->mine); //Si on met painter en parametres
 }
 
-void Mine::mineEclose(){
+void Mine::eclose(){
 
 }
