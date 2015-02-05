@@ -1,17 +1,17 @@
 #include "game.h"
 
 Game::Game(QObject *parent):QObject(parent), _isRunning(false){
-    //_timer.setSingleShot(false);
-    //connect(&_timer,SIGNAL(timeout()),this,SLOT(update()));
+    _timer.setSingleShot(false);
+    connect(&_timer,SIGNAL(timeout()),this,SLOT(update()));
 }
 
 void Game::start() {
-    //_timer.start( 100 - _speed +1);
+    _timer.start(30);
     _isRunning = true;
 }
 
 void Game::pause(){
-    //_timer.stop();
+    _timer.stop();
     _isRunning = false;
 
 }
@@ -23,6 +23,7 @@ void Game::reset(){
 }
 
 void Game::update() {
+    emit changed();
 }
 
 bool Game::isRunning() const {
@@ -31,8 +32,4 @@ bool Game::isRunning() const {
 
 int Game::getScore() const {
     return _score;
-}
-
-void Game::setScore(int score) {
-    _score = score;
 }

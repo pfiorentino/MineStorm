@@ -14,8 +14,16 @@ MineStormGame::MineStormGame(QObject *parent):Game(parent)
 }
 
 void MineStormGame::draw(QPainter &painter, QRect &rect) {
+    _ship->move();
 
-    _ship.draw(painter);
+    if (_upKeyDown)
+        _ship->accelerate();
+    if (_leftKeyDown)
+        _ship->turnLeft();
+    if (_rightKeyDown)
+        _ship->turnRight();
+
+    _ship->draw(painter);
 
     Life life;
     life.draw(painter, QPoint(380, 580));
@@ -30,26 +38,51 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
 
     Mine mineSmall(4, QPoint(250,250));
     mineSmall.draw(painter);
+
+    Game::_score = _ship->getSpeed();
 }
 
 void MineStormGame::initialize() {
+    _ship = new SpaceShip();
     Game::_score = 0;
+    _upKeyDown = false;
+    _leftKeyDown = false;
+    _rightKeyDown = false;
 }
 
 void MineStormGame::keyPressed( int key ) {
     switch(key) {
         case Qt::Key_Left:
-            _ship.turnLeft();
-            emit changed();
+            _leftKeyDown = true;
             break;
         case Qt::Key_Right:
-            _ship.turnRight();
-            Game::_score = _ship.getAngle();
-            emit changed();
+            _rightKeyDown = true;
+            break;
+        case Qt::Key_Up:
+            //_ship.accelerate();
+            _upKeyDown = true;
+            break;
+        case Qt::Key_Return:
+            Game::start();
+            break;
+        case Qt::Key_Escape:
+            Game::reset();
             break;
     }
 }
+
 void MineStormGame::keyReleased( int key ) {
+    switch(key) {
+        case Qt::Key_Left:
+            _leftKeyDown = false;
+            break;
+        case Qt::Key_Right:
+            _rightKeyDown = false;
+            break;
+        case Qt::Key_Up:
+            _upKeyDown = false;
+            break;
+    }
 }
 
 

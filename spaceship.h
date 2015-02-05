@@ -11,16 +11,20 @@ public:
     SpaceShip(QPoint position = QPoint(200, 300));
     void draw(QPainter &painter);
     void spawn();
-    int getAngle();
     void turnLeft();
     void turnRight();
+    void accelerate();
     void move();
     void fire(QPainter &painter);
+    int getSpeed();
 private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;
+    float degToRad(int degValue) const;
     QPoint _position;
+    QPoint _previousPosition;
+    QPoint _speed;
     int _angle;
-    int _speed;
+    int _debug;
 };
 
 #endif // SPACESHIP_H

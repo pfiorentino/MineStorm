@@ -13,7 +13,10 @@ public:
     void keyReleased( int key );
 private:
     void initialize();
-    SpaceShip _ship;
+    SpaceShip *_ship;
+    bool _leftKeyDown;
+    bool _rightKeyDown;
+    bool _upKeyDown;
 };
 
 #endif // MINESTORMGAME_H

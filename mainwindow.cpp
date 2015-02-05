@@ -16,13 +16,8 @@ MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
     auto gameboard = new GameBoard(game, window);
     gameboard->setSizePolicy(QSizePolicy::Expanding , QSizePolicy::Expanding);
 
-    auto score = new ScoreController(game, gameboard);
+    new ScoreController(game, gameboard);
 
-
-//    auto layout = new QVBoxLayout;
-//    layout->addWidget(gameboard);
-
-//    window->setLayout(layout);
     setCentralWidget(window);
     show();
 }

@@ -16,7 +16,9 @@ GameBoard::GameBoard(Game *game, QWidget *parent) : QWidget(parent), _game(game)
 void GameBoard::paintEvent(QPaintEvent * /* event */ ) {
     QPainter painter;
     painter.begin(this);
-    painter.setPen(QPen(QColor(220,220,220)));
+    QPen pen = QPen(QColor(220,220,220));
+    pen.setWidth(2);
+    painter.setPen(pen);
     auto rectT = rect();
     _game->draw(painter, rectT);
     painter.end();
