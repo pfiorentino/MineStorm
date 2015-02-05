@@ -8,18 +8,16 @@
 class SpaceShip
 {
 public:
-    SpaceShip(int x, int y);
-    ~SpaceShip();
+    SpaceShip(QPoint position);
     void draw(QPainter &painter);
-    void spaceShipSpawn();
-    void spaceShipTurnLeft();
-    void spaceShipTurnRight();
-    void spaceShipMove();
-    void spaceShipFire(QPainter &painter);
+    void spawn();
+    void turnLeft();
+    void turnRight();
+    void move();
+    void fire(QPainter &painter);
 private:
-    QPolygon ship;
-    QPoint position;
-    double angle;
+    QPoint _position;
+    double _angle;
 };
 
 #endif // SPACESHIP_H

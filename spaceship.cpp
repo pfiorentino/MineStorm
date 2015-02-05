@@ -2,57 +2,50 @@
 
 #include <QPolygon>
 
-SpaceShip::SpaceShip(int x, int y)
-{
-    this->position = QPoint(x,y);
-    this->ship = QPolygon();
-    this->angle = 0;
-}
-
-SpaceShip::~SpaceShip()
-{
-
+SpaceShip::SpaceShip(QPoint position): _position(position) {
+    _angle = 0;
 }
 
 void SpaceShip::draw(QPainter &painter) {
-    QPoint position = this->position;
-    this->ship.append(QPoint(position.x()-10, position.y()));
-    this->ship.append(QPoint(position.x()-10, position.y()+10));
-    this->ship.append(QPoint(position.x(), position.y()));
-    this->ship.append(QPoint(position.x()+3, position.y()-3));
-    this->ship.append(QPoint(position.x(), position.y()-20));
-    this->ship.append(QPoint(position.x()-3, position.y()-3));
-    this->ship.append(QPoint(position.x(), position.y()));
-    this->ship.append(QPoint(position.x()+10, position.y()+10));
-    this->ship.append(QPoint(position.x()+10, position.y()));
+    QPolygon ship;
+
+    ship.append(QPoint(_position.x()-10, _position.y()));
+    ship.append(QPoint(_position.x()-10, _position.y()+10));
+    ship.append(QPoint(_position.x(), _position.y()));
+    ship.append(QPoint(_position.x()+3, _position.y()-3));
+    ship.append(QPoint(_position.x(), _position.y()-20));
+    ship.append(QPoint(_position.x()-3, _position.y()-3));
+    ship.append(QPoint(_position.x(), _position.y()));
+    ship.append(QPoint(_position.x()+10, _position.y()+10));
+    ship.append(QPoint(_position.x()+10, _position.y()));
 
     QPainterPath path;
-    path.addPolygon(this->ship);
+    path.addPolygon(ship);
 
     painter.drawPath(path);
 }
 
-void SpaceShip::spaceShipSpawn(){
+void SpaceShip::spawn(){
 
 }
 
-void SpaceShip::spaceShipTurnLeft(){
+void SpaceShip::turnLeft(){
     /*
     this->angle--;
     this->position.setX( cos(this->angle)*(x-xc) - sin(thêta)*(y-yc) + xc;
     y = sin(thêta)*(x-xc) + cos(thêta)*(y-yc) + yc;*/
 }
 
-void SpaceShip::spaceShipTurnRight(){
+void SpaceShip::turnRight(){
 
 }
 
-void SpaceShip::spaceShipMove(){
- this->ship.translated(5,0);
+void SpaceShip::move(){
+    //this->ship.translated(5,0);
 }
 
-void SpaceShip::spaceShipFire(QPainter &painter){
-    shipBullet bul(this->position);
+void SpaceShip::fire(QPainter &painter){
+    shipBullet bul(_position);
     bul.draw(painter);
     bul.bulletMove();
 }

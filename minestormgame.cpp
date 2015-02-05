@@ -15,7 +15,7 @@ MineStormGame::MineStormGame(QObject *parent):Game(parent)
 }
 
 void MineStormGame::draw(QPainter &painter, QRect &rect) {
-    SpaceShip ship(200,300);
+    SpaceShip ship(QPoint(200,300));
     ship.draw(painter);
 
 

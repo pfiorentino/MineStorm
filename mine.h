@@ -9,9 +9,9 @@ class Mine
 public:
     Mine(int size, QPoint position);
     void draw(QPainter &painter);
-    void mineSpawn();
-    void mineMove();
-    void mineEclose();
+    void spawn();
+    void move();
+    void eclose();
 private:
     int _size;
     QPoint _position;
