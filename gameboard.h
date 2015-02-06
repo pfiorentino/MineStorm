@@ -1,6 +1,8 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
+#include "scorecontroller.h"
+
 #include <QWidget>
 class Game;
 /**
@@ -24,6 +26,8 @@ protected:
 
 private:
     Game *_game;
+    ScoreController *_scoreController;
+    QLabel *_startLabel;
 };
 
 #endif // GAMEBOARD_H

@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     QFontDatabase::addApplicationFont(":/fonts/PressStart2P.ttf");
 
     QApplication a(argc, argv);
+
     MineStormGame game;
     MainWindow mainWindow(&game);
 

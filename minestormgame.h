@@ -8,7 +8,7 @@ class MineStormGame : public Game
     Q_OBJECT
 public:
     MineStormGame(QObject *parent = nullptr);
-    virtual void draw(QPainter &painter, QRect &rect);
+    virtual void draw(QPainter &painter);
     void keyPressed( int key );
     void keyReleased( int key );
 private:

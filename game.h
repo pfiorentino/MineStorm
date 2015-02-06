@@ -44,7 +44,7 @@ public:
      * @param painter context d'affichage voir [la documentation Qt](http://doc.qt.io/qt-5/qpainter.html)
      * @param size taille de la zone dans laquelle peindre le jeu
      */
-    virtual void draw(QPainter &painter, QRect &size) = 0;
+    virtual void draw(QPainter &painter) = 0;
 
     /**
      * @brief keyPressed  appélée quand l'utilisateur presse une touche
@@ -64,6 +64,8 @@ public:
      * @return
      */
     bool isRunning() const;
+
+    bool started() const;
 protected:
     /**
      * @brief initialize initialise ou réinitialise le jeu
@@ -79,6 +81,7 @@ private slots:
 
 private:
     QTimer _timer;
+    bool _started;
     bool _isRunning;
 };
 

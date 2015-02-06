@@ -13,7 +13,7 @@ MineStormGame::MineStormGame(QObject *parent):Game(parent)
     initialize();
 }
 
-void MineStormGame::draw(QPainter &painter, QRect &rect) {
+void MineStormGame::draw(QPainter &painter) {
     _ship->move();
 
     if (_upKeyDown)
@@ -38,8 +38,6 @@ void MineStormGame::draw(QPainter &painter, QRect &rect) {
 
     Mine mineSmall(4, QPoint(250,250));
     mineSmall.draw(painter);
-
-    Game::_score = _ship->getSpeed();
 }
 
 void MineStormGame::initialize() {
@@ -63,7 +61,10 @@ void MineStormGame::keyPressed( int key ) {
             _upKeyDown = true;
             break;
         case Qt::Key_Return:
-            Game::start();
+            if (this->isRunning())
+                this->pause();
+            else
+                this->start();
             break;
         case Qt::Key_Escape:
             Game::reset();
