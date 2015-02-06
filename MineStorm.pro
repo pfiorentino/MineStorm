@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     life.cpp \
     mine.cpp \
     scorecontroller.cpp \
-    shipbullet.cpp
+    shipbullet.cpp \
+    movableobject.cpp
 
 HEADERS  += mainwindow.h \
     gameboard.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     life.h \
     mine.h \
     scorecontroller.h \
-    shipbullet.h
+    shipbullet.h \
+    movableobject.h
 
 FORMS    +=
 
