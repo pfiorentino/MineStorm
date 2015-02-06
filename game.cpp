@@ -38,3 +38,7 @@ bool Game::started() const {
 int Game::getScore() const {
     return _score;
 }
+
+void Game::setScore(int score) {
+    _score = score;
+}

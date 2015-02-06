@@ -12,12 +12,18 @@ ScoreController::ScoreController(Game *game, QWidget *parent) : QWidget(parent),
     _scoreLabel = new QLabel(this);
     _scoreLabel->setContentsMargins(10, 10, 10, 10);
     _scoreLabel->setStyleSheet("QLabel { color : rgb(220, 220, 220); }");
-    _scoreLabel->setText("0");
-    _scoreLabel->setAlignment(Qt::AlignBottom | Qt::AlignRight);
+    _scoreLabel->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     _scoreLabel->setFont(QFont("Press Start 2P", 15));
+    _scoreLabel->resize(140, 40);
 }
 
 void ScoreController::refresh() {
-    _scoreLabel->setText(QString::number(_game->getScore()));
+    QString text = QString::number(_game->getScore());
+
+    for (int i = text.length(); i < 6; ++i) {
+        text.insert(0, '0');
+    }
+
+    _scoreLabel->setText(text);
 }
 

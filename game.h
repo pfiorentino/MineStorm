@@ -38,6 +38,7 @@ public:
     void reset();
 
     int getScore() const;
+    void setScore(int score);
 
     /**
      * @brief draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées

@@ -1,6 +1,9 @@
 #ifndef MINESTORMGAME_H
 #define MINESTORMGAME_H
 #include "game.h"
+
+#include <vector>
+
 #include "spaceship.h"
 
 class MineStormGame : public Game
@@ -14,6 +17,8 @@ public:
 private:
     void initialize();
     SpaceShip *_ship;
+    std::vector<ShipBullet> _bullets;
+    void fire();
     bool _leftKeyDown;
     bool _rightKeyDown;
     bool _upKeyDown;

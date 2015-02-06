@@ -1,25 +1,21 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
-
 #include "movableobject.h"
-
-#include <math.h>
 
 #include "shipbullet.h"
 
 class SpaceShip : public MovableObject
 {
 public:
-    SpaceShip(QPoint position = QPoint(200, 300));
+    SpaceShip(QPoint position = QPoint(200, 300), int orientation = 0);
     void draw(QPainter &painter);
-    void spawn();
-    void turnLeft();
-    void turnRight();
+    void rotateLeft();
+    void rotateRight();
     void accelerate();
-    void fire(QPainter &painter);
+    int getOrientation();
 private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;
-    int _angle;
+    int _orientation;
 };
 
 #endif // SPACESHIP_H

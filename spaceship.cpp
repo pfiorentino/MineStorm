@@ -1,9 +1,8 @@
 #include "spaceship.h"
-
 #include <QPolygon>
 
-SpaceShip::SpaceShip(QPoint position):MovableObject(position) {
-    _angle = 0;
+SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
+    _orientation = orientation;
 }
 
 void SpaceShip::draw(QPainter &painter) {
@@ -25,43 +24,27 @@ void SpaceShip::draw(QPainter &painter) {
     painter.drawPath(path);
 }
 
-void SpaceShip::spawn(){
-
+void SpaceShip::rotateLeft(){
+    _orientation += 10;
 }
 
-void SpaceShip::turnLeft(){
-    _angle = (_angle - 10)%360;
-    if (_angle < 0)
-        _angle = _angle+360;
-}
-
-void SpaceShip::turnRight(){
-    _angle = abs((_angle + 10)%360);
+void SpaceShip::rotateRight(){
+    _orientation -= 10;
 }
 
 void SpaceShip::accelerate() {
-    QPoint factor;
-
-    if (_angle > 0 && _angle < 180){
-        factor.setX(1);
-    } else if (_angle > 180) {
-        factor.setX(-1);
-    }
-
-    if (_angle > 90 && _angle < 270){
-        factor.setY(1);
-    } else if (_angle < 90 || _angle > 270) {
-        factor.setY(-1);
-    }
-
-    MovableObject::accelerate(factor);
+    _direction = _orientation;
+    MovableObject::accelerate();
 }
 
-void SpaceShip::fire(QPainter &painter){
+int SpaceShip::getOrientation() {
+    return _orientation;
 }
 
 QPoint SpaceShip::getAbsolutePoint(QPoint relativePoint) const {
     QPoint absolutePoint = QPoint(_position.x()+relativePoint.x(), _position.y()+relativePoint.y());
-    return QPoint(cos(_angle*M_PI/180)*(absolutePoint.x()-_position.x()) - sin(_angle*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.x(),
-                  sin(_angle*M_PI/180)*(absolutePoint.x()-_position.x()) + cos(_angle*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.y());
+    return QPoint(sin(_orientation*M_PI/180)*(absolutePoint.x()-_position.x()) - cos(_orientation*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.x(),
+                  cos(_orientation*M_PI/180)*(absolutePoint.x()-_position.x()) + sin(_orientation*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.y());
 }
+
+

@@ -8,8 +8,7 @@
 
 #include <iostream>
 
-MineStormGame::MineStormGame(QObject *parent):Game(parent)
-{
+MineStormGame::MineStormGame(QObject *parent):Game(parent) {
     initialize();
 }
 
@@ -19,9 +18,11 @@ void MineStormGame::draw(QPainter &painter) {
     if (_upKeyDown)
         _ship->accelerate();
     if (_leftKeyDown)
-        _ship->turnLeft();
+        _ship->rotateLeft();
     if (_rightKeyDown)
-        _ship->turnRight();
+        _ship->rotateRight();
+
+    _score = _ship->getOrientation();
 
     _ship->draw(painter);
 
@@ -38,14 +39,23 @@ void MineStormGame::draw(QPainter &painter) {
 
     Mine mineSmall(4, QPoint(250,250));
     mineSmall.draw(painter);
+
+    for (auto &bullet : _bullets) {
+        bullet.move();
+        bullet.draw(painter);
+    }
 }
 
 void MineStormGame::initialize() {
     _ship = new SpaceShip();
-    Game::_score = 0;
+    _score = 0;
     _upKeyDown = false;
     _leftKeyDown = false;
     _rightKeyDown = false;
+}
+
+void MineStormGame::fire() {
+    _bullets.push_back(ShipBullet(_ship->getPosition(),11, _ship->getOrientation()));
 }
 
 void MineStormGame::keyPressed( int key ) {
@@ -57,8 +67,10 @@ void MineStormGame::keyPressed( int key ) {
             _rightKeyDown = true;
             break;
         case Qt::Key_Up:
-            //_ship.accelerate();
             _upKeyDown = true;
+            break;
+        case Qt::Key_Space:
+            fire();
             break;
         case Qt::Key_Return:
             if (this->isRunning())

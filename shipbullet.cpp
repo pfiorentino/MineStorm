@@ -1,19 +1,10 @@
 #include "shipbullet.h"
 
-shipBullet::shipBullet(QPoint pos)
+ShipBullet::ShipBullet(QPoint position, int speed, int orientation):MovableObject(position, speed, orientation)
 {
-    this->bullet = QPolygon();
-    this->position = pos;
-}
-
-shipBullet::~shipBullet(){
 
 }
 
-void shipBullet::bulletMove(){
-    this->bullet.translate(20,0);
-}
-
-void shipBullet::draw(QPainter &painter){
-
+void ShipBullet::draw(QPainter &painter) {
+    painter.drawPoint(_position);
 }
