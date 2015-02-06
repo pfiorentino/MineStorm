@@ -2,6 +2,7 @@
 
 #include <QPolygon>
 #include <math.h>
+#include <algorithm>
 
 SpaceShip::SpaceShip(QPoint position): _position(position) {
     _angle = 0;
@@ -36,13 +37,10 @@ void SpaceShip::turnLeft(){
     _angle = (_angle - 10)%360;
     if (_angle < 0)
         _angle = _angle+360;
-
-    _debug = _angle;
 }
 
 void SpaceShip::turnRight(){
     _angle = abs((_angle + 10)%360);
-    _debug = _angle;
 }
 
 void SpaceShip::accelerate() {
@@ -50,16 +48,12 @@ void SpaceShip::accelerate() {
         _speed.setX(_speed.x()+1);
     } else if (_angle > 180 && _speed.x() > -10) {
         _speed.setX(_speed.x()-1);
-    } else if (_angle == 0 || _angle == 180) {
-        //_speed.setX(0);
     }
 
     if (_angle > 90 && _angle < 270 && _speed.y() < 10){
         _speed.setY(_speed.y()+1);
     } else if ((_angle < 90 || _angle > 270) && _speed.y() > -10) {
         _speed.setY(_speed.y()-1);
-    } else if (_angle == 90 || _angle == 270) {
-        //_speed.setY(0);
     }
 }
 
@@ -68,20 +62,20 @@ void SpaceShip::move(){
 
     if (_position.x() < 0){
         _position.setX(400);
-        _position.setY(600-_position.y());
+        _position.setY(std::max(600-_position.y(), 0));
     } else if (_position.x() > 400) {
         _position.setX(0);
-        _position.setY(600-_position.y());
+        _position.setY(std::max(600-_position.y(), 0));
     } else {
         _position.setX(_position.x()+_speed.x());
     }
 
     if (_position.y() < 0){
         _position.setY(600);
-        _position.setX(400-_position.x());
+        _position.setX(std::max(400-_position.x(), 0));
     } else if (_position.y() > 600) {
         _position.setY(0);
-        _position.setX(400-_position.x());
+        _position.setX(std::max(400-_position.x(), 0));
     } else {
         _position.setY(_position.y()+_speed.y());
     }

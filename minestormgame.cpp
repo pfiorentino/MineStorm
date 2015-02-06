@@ -38,6 +38,8 @@ void MineStormGame::draw(QPainter &painter) {
 
     Mine mineSmall(4, QPoint(250,250));
     mineSmall.draw(painter);
+
+    Game::_score = _ship->getSpeed();
 }
 
 void MineStormGame::initialize() {
