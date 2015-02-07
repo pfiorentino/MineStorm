@@ -24,6 +24,8 @@ private:
     bool _upKeyDown;
     bool _downKeyDown; //Touche de test, à enlever dans la version finale
     bool _spaceKeyDown;
+    QVector<QPolygon> _listMine;
+    QVector<QPolygon> _listBullets;
 };
 
 #endif // MINESTORMGAME_H

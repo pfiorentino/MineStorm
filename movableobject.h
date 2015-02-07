@@ -9,7 +9,7 @@ class MovableObject
 {
 public:
     MovableObject(QPoint position = QPoint(0, 0), int speed = 0, int direction = 0);
-    virtual void draw(QPainter &painter) = 0;
+    virtual QPolygon draw(QPainter &painter) = 0;
 
     QPoint getPosition();
 

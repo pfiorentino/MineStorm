@@ -8,7 +8,7 @@ class SpaceShip : public MovableObject
 {
 public:
     SpaceShip(QPoint position = QPoint(200, 300), int orientation = 180);
-    void draw(QPainter &painter);
+    QPolygon draw(QPainter &painter);
     void rotateLeft();
     void rotateRight();
     void accelerate();
