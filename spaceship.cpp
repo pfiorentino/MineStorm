@@ -48,6 +48,11 @@ void SpaceShip::accelerate() {
 
     _speed.setX(_speed.x()+(_acceleration*sin(_orientation*M_PI/180)));
     _speed.setY(_speed.y()+(_acceleration*cos(_orientation*M_PI/180)));
+
+    if (getSpeed() > 12) {
+        setDirection(_orientation);
+        setSpeed(12);
+    }
 }
 
 void SpaceShip::stopAcceleration() {

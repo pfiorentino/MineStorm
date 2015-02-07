@@ -22,7 +22,7 @@ void MineStormGame::draw(QPainter &painter) {
     if (_rightKeyDown)
         _ship->rotateRight();
 
-    _score = _ship->getOrientation();
+    _score = _ship->getSpeed();
 
     _ship->draw(painter);
 

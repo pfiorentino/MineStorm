@@ -10,12 +10,12 @@ QPoint MovableObject::getPosition() {
 }
 
 void MovableObject::setSpeed(int speed) {
-    _speed.setX(speed*cos(_direction*M_PI/180));
-    _speed.setY(speed*sin(_direction*M_PI/180));
+    _speed.setX(speed*sin(_direction*M_PI/180));
+    _speed.setY(speed*cos(_direction*M_PI/180));
 }
 
 int MovableObject::getSpeed() {
-    return _speed.x()/cos(_direction*M_PI/180);
+    return sqrt(_speed.x()*_speed.x()+_speed.y()*_speed.y());
 }
 
 void MovableObject::setDirection(int angle) {
