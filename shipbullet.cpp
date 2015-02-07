@@ -5,8 +5,13 @@ ShipBullet::ShipBullet(QPoint position, int speed, int orientation):MovableObjec
     this->alive=80;
 }
 
-void ShipBullet::draw(QPainter &painter) {
+QPolygon ShipBullet::draw(QPainter &painter) {
+    QVector<QPoint> tab;
+    tab.push_back(_position);
+    QPolygon bull = QPolygon(tab);
     painter.drawPoint(_position);
+
+    return bull;
 }
 
 bool ShipBullet::outOfScreen(){

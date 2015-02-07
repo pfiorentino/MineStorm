@@ -46,7 +46,7 @@ void MineStormGame::draw(QPainter &painter) {
     while(it != _bullets.end()) {
         if(it->getAlive()<1){
             it = _bullets.erase(it);
-         //   _listBullets.pop_front();
+            _listBullets.pop_front();
         } else {
             it->move();
          //   _listBullets.push_back(it->draw(painter));

@@ -7,7 +7,7 @@ SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
     _maxspeed = 12;
 }
 
-void SpaceShip::draw(QPainter &painter) {
+QPolygon SpaceShip::draw(QPainter &painter) {
     QPolygon ship;
 
 //    ship.append(getAbsolutePoint(QPoint(-10, 0)));
@@ -34,6 +34,8 @@ void SpaceShip::draw(QPainter &painter) {
     path.addPolygon(ship);
 
     painter.drawPath(path);
+
+    return ship;
 }
 
 void SpaceShip::rotateLeft(){
