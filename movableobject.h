@@ -24,6 +24,7 @@ protected:
     QPoint _position;
     int _direction;
     QPoint _speed;
+    int alive;
 
 private:
 };

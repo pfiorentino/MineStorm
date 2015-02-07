@@ -2,7 +2,7 @@
 
 ShipBullet::ShipBullet(QPoint position, int speed, int orientation):MovableObject(position, speed, orientation)
 {
-
+    this->alive=50;
 }
 
 void ShipBullet::draw(QPainter &painter) {
@@ -15,4 +15,8 @@ bool ShipBullet::outOfScreen(){
         return true;
     else
         return false;
+}
+
+int ShipBullet::getAlive() {
+    return this->alive;
 }

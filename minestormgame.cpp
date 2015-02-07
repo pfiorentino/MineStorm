@@ -42,7 +42,7 @@ void MineStormGame::draw(QPainter &painter) {
 
     std::vector<ShipBullet>::iterator it = _bullets.begin();
     while(it != _bullets.end()) {
-        if(it->outOfScreen()){
+        if(it->getAlive()<1){
             it = _bullets.erase(it);
         } else {
             it->move();

@@ -8,6 +8,7 @@ public:
     ShipBullet(QPoint position, int speed, int orientation);
     void draw(QPainter &painter);
     bool outOfScreen();
+    int getAlive();
 };
 
 #endif // SHIPBULLET_H
