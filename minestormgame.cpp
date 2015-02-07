@@ -101,6 +101,7 @@ void MineStormGame::keyReleased( int key ) {
             break;
         case Qt::Key_Up:
             _upKeyDown = false;
+            _ship->stopAcceleration();
             break;
     }
 }

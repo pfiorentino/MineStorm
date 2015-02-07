@@ -13,8 +13,6 @@ public:
 
     QPoint getPosition();
 
-    void accelerate();
-
     void setSpeed(int speed);
     int getSpeed();
 
@@ -25,9 +23,9 @@ public:
 protected:
     QPoint _position;
     int _direction;
+    QPoint _speed;
 
 private:
-    int _speed;
 };
 
 #endif // MOVABLEOBJECT_H
