@@ -14,6 +14,8 @@ public:
     void accelerate();
     void stopAcceleration();
     int getOrientation();
+    void stop();
+
 private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;
     int _orientation;

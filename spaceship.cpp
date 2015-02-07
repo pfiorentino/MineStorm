@@ -54,6 +54,12 @@ void SpaceShip::stopAcceleration() {
     _acceleration = 0;
 }
 
+void SpaceShip::stop() {
+    //Fonction utilisée pour les tests, stoppe le vaisseau
+    _speed.setX(0);
+    _speed.setY(0);
+}
+
 int SpaceShip::getOrientation() {
     return _orientation;
 }

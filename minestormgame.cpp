@@ -59,6 +59,7 @@ void MineStormGame::initialize() {
     _upKeyDown = false;
     _leftKeyDown = false;
     _rightKeyDown = false;
+    _downKeyDown = false;
 }
 
 void MineStormGame::fire() {
@@ -75,6 +76,9 @@ void MineStormGame::keyPressed( int key ) {
             break;
         case Qt::Key_Up:
             _upKeyDown = true;
+            break;
+        case Qt::Key_Down:
+            _downKeyDown = true;
             break;
         case Qt::Key_Space:
             fire();
@@ -103,6 +107,11 @@ void MineStormGame::keyReleased( int key ) {
             _upKeyDown = false;
             _ship->stopAcceleration();
             break;
+        case Qt::Key_Down:
+            _downKeyDown = false;
+            _ship->stop();
+        break;
+
     }
 }
 

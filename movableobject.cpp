@@ -27,6 +27,22 @@ int MovableObject::getDirection(){
 }
 
 void MovableObject::move() {
+    _position.setX(_position.x()+_speed.x());
+    _position.setY(_position.y()+_speed.y());
+
+    if (_position.x() < 0){
+        _position.setX(_position.x()+400);
+    } else if (_position.x() > 400) {
+        _position.setX(_position.x()-400);
+    }
+    if (_position.y() < 0){
+        _position.setY(_position.y()+600);
+    } else if (_position.y() > 600) {
+        _position.setY(_position.y()-600);
+    }
+}
+
+/*void MovableObject::move() {
     if (_position.x() < 0){
         _position.setX(400);
         _position.setY(std::max(600-_position.y(), 0));
@@ -46,4 +62,4 @@ void MovableObject::move() {
     } else {
         _position.setY(_position.y()+_speed.y());
     }
-}
+}*/
