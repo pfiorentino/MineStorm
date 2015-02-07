@@ -30,17 +30,17 @@ void MovableObject::move() {
     _position.setX(_position.x()+_speed.x());
     _position.setY(_position.y()+_speed.y());
 
-    while (_position.x() < 0){
-        _position.setX(_position.x()+400);
+    if (_position.x() < 0){
+        _position.setX(400);
     }
-    while (_position.x() > 400) {
-        _position.setX(_position.x()-400);
+    if (_position.x() > 400) {
+        _position.setX(0);
     }
-    while (_position.y() < 0){
-        _position.setY(_position.y()+600);
+    if (_position.y() < 0){
+        _position.setY(600);
     }
-    while (_position.y() > 600) {
-        _position.setY(_position.y()-600);
+    if (_position.y() > 600) {
+        _position.setY(0);
     }
 }
 

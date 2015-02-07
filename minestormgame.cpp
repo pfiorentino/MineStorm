@@ -63,7 +63,7 @@ void MineStormGame::initialize() {
 }
 
 void MineStormGame::fire() {
-    _bullets.push_back(ShipBullet(_ship->getPosition(),11, _ship->getOrientation()));
+    _bullets.push_back(ShipBullet(_ship->getPosition(),13, _ship->getOrientation()));
 }
 
 void MineStormGame::keyPressed( int key ) {
