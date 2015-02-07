@@ -20,6 +20,7 @@ private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;
     int _orientation;
     int _acceleration;
+    int _maxspeed;
 };
 
 #endif // SPACESHIP_H

@@ -31,17 +31,17 @@ void MovableObject::move() {
     _position.setY(_position.y()+_speed.y());
 
     if (_position.x() < 0){
-        _position.setX(400);
+        _position.setX(_position.x()+400);
     }
     else if (_position.x() > 400) {
-        _position.setX(0);
+        _position.setX(_position.x()-400);
     }
 
     if (_position.y() < 0){
-        _position.setY(600);
+        _position.setY(_position.y()+600);
     }
     else if (_position.y() > 600) {
-        _position.setY(0);
+        _position.setY(_position.y()-600);
     }
 
     this->alive--;

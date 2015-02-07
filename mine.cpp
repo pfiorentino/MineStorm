@@ -2,9 +2,14 @@
 
 #include <QPolygon>
 
+
 Mine::Mine(int size, QPoint position): _size(size), _position(position) {
     _speed.setX(rand()%200 - 100);
     _speed.setY(rand()%200 - 100);
+}
+
+Mine::Mine(int size, QPoint position, int speed, int orientation):MovableObject(position, speed, orientation) {
+    this->_size = size;
 }
 
 void Mine::draw(QPainter &painter) {

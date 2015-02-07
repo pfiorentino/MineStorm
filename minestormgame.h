@@ -23,6 +23,7 @@ private:
     bool _rightKeyDown;
     bool _upKeyDown;
     bool _downKeyDown; //Touche de test, à enlever dans la version finale
+    bool _spaceKeyDown;
 };
 
 #endif // MINESTORMGAME_H

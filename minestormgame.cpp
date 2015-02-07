@@ -21,6 +21,8 @@ void MineStormGame::draw(QPainter &painter) {
         _ship->rotateLeft();
     if (_rightKeyDown)
         _ship->rotateRight();
+    if (_spaceKeyDown)
+        fire();
 
     _score = _ship->getSpeed();
 
@@ -60,10 +62,11 @@ void MineStormGame::initialize() {
     _leftKeyDown = false;
     _rightKeyDown = false;
     _downKeyDown = false;
+    _spaceKeyDown =false;
 }
 
 void MineStormGame::fire() {
-    _bullets.push_back(ShipBullet(_ship->getPosition(),13, _ship->getOrientation()));
+    _bullets.push_back(ShipBullet(_ship->getPosition(),18, _ship->getOrientation()));
 }
 
 void MineStormGame::keyPressed( int key ) {
@@ -81,7 +84,7 @@ void MineStormGame::keyPressed( int key ) {
             _downKeyDown = true;
             break;
         case Qt::Key_Space:
-            fire();
+            _spaceKeyDown =true;
             break;
         case Qt::Key_Return:
             if (this->isRunning())
@@ -110,6 +113,9 @@ void MineStormGame::keyReleased( int key ) {
         case Qt::Key_Down:
             _downKeyDown = false;
             _ship->stop();
+        break;
+        case Qt::Key_Space:
+            _spaceKeyDown = false;
         break;
 
     }

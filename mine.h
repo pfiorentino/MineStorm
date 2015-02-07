@@ -3,11 +3,14 @@
 
 #include <QPainter>
 #include <QPolygon>
+#include "movableobject.h"
 
-class Mine
+class Mine : public MovableObject
 {
 public:
     Mine(int size, QPoint position);
+    Mine(int size, QPoint position, int speed, int orientation);
+
     void draw(QPainter &painter);
     void spawn();
     void move();

@@ -4,6 +4,7 @@
 SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
     _orientation = orientation;
     _acceleration = 0;
+    _maxspeed = 12;
 }
 
 void SpaceShip::draw(QPainter &painter) {
@@ -49,9 +50,9 @@ void SpaceShip::accelerate() {
     _speed.setX(_speed.x()+(_acceleration*sin(_orientation*M_PI/180)));
     _speed.setY(_speed.y()+(_acceleration*cos(_orientation*M_PI/180)));
 
-    if (getSpeed() > 12) {
+    if (getSpeed() > _maxspeed) {
         setDirection(_orientation);
-        setSpeed(12);
+        setSpeed(_maxspeed);
     }
 }
 
