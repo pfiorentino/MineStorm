@@ -40,14 +40,21 @@ void MineStormGame::draw(QPainter &painter) {
     Mine mineSmall(4, QPoint(250,250));
     mineSmall.draw(painter);
 
-    for (auto &bullet : _bullets) {
-        bullet.move();
-        bullet.draw(painter);
+    std::vector<ShipBullet>::iterator it = _bullets.begin();
+    while(it != _bullets.end()) {
+        if(it->outOfScreen()){
+            it = _bullets.erase(it);
+        } else {
+            it->move();
+            it->draw(painter);
+            ++it;
+        }
     }
 }
 
 void MineStormGame::initialize() {
     _ship = new SpaceShip();
+    _bullets.clear();
     _score = 0;
     _upKeyDown = false;
     _leftKeyDown = false;
