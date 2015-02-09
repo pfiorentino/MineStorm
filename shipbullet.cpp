@@ -2,7 +2,7 @@
 
 ShipBullet::ShipBullet(QPoint position, int speed, int orientation):MovableObject(position, speed, orientation)
 {
-    this->alive=80;
+    this->alive=30;
 }
 
 void ShipBullet::draw(QPainter &painter) {
