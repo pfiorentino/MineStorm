@@ -8,8 +8,6 @@ SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
 }
 
 void SpaceShip::draw(QPainter &painter) {
-
-
     QPainterPath path;
     path.addPolygon(this->getPolygon());
     painter.drawPath(path);

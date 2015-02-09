@@ -6,6 +6,8 @@
 #include<tuple>
 #include "spaceship.h"
 #include "mine.h"
+#include "explosion.h"
+
 class MineStormGame : public Game
 {
     Q_OBJECT

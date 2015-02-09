@@ -1,5 +1,4 @@
 #include "minestormgame.h"
-#include "mine.h"
 #include "life.h"
 
 #include <QPainter>
@@ -11,6 +10,8 @@
 
 MineStormGame::MineStormGame(QObject *parent):Game(parent) {
     initialize();
+
+    Explosion expl(1, QPoint(100, 200));
 }
 
 void MineStormGame::generateMines(int small, int medium, int big) {
@@ -30,6 +31,8 @@ void MineStormGame::generateMines(int small, int medium, int big) {
 }
 
 void MineStormGame::draw(QPainter &painter) {
+
+
     _ship->move();
 
     if (_upKeyDown)
@@ -49,7 +52,8 @@ void MineStormGame::draw(QPainter &painter) {
     life.draw(painter, QPoint(365, 580));
     life.draw(painter, QPoint(350, 580));
 
-
+    Explosion expl(1, QPoint(100, 200));
+    expl.draw(painter);
 
 
     std::vector<ShipBullet>::iterator it = _bullets.begin();
