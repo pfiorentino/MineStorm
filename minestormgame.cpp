@@ -25,8 +25,7 @@ void MineStormGame::draw(QPainter &painter) {
         fire();
 
     _score = _ship->getSpeed();
-
-    QPolygon ship = _ship->draw(painter);
+    _ship->draw(painter);
 
     Life life;
     life.draw(painter, QPoint(380, 580));
@@ -34,25 +33,49 @@ void MineStormGame::draw(QPainter &painter) {
     life.draw(painter, QPoint(350, 580));
 
     Mine mine(1, QPoint(100,400));
-    _listMine.push_back(mine.draw(painter));
+    mine.draw(painter);
+    _mines.push_back(mine);
 
     Mine mineMed(2, QPoint(50,250));
-    _listMine.push_back(mineMed.draw(painter));
+    mineMed.draw(painter);
+    _mines.push_back(mineMed);
 
     Mine mineSmall(4, QPoint(250,250));
-    _listMine.push_back(mineSmall.draw(painter));
+    mineSmall.draw(painter);
+    _mines.push_back(mineSmall);
+
+
 
     std::vector<ShipBullet>::iterator it = _bullets.begin();
     while(it != _bullets.end()) {
         if(it->getAlive()<1){
             it = _bullets.erase(it);
-         //   _listBullets.pop_front();
+            //_listBullets.pop_front();
         } else {
             it->move();
          //   _listBullets.push_back(it->draw(painter));
             ++it;
         }
     }
+
+    it = _bullets.begin();
+    std::vector<Mine>::iterator it2 = _mines.begin();
+
+    while(it2 != _mines.end()){
+        while(it != _bullets.end()){
+            if(!it2->getPolygon().intersected(it->getPolygon()).isEmpty()){
+                it2->explode();
+                it->explode();
+            }
+            ++it;
+        }
+        if(!it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()){
+            it2->explode();
+            _ship->explode();
+        }
+        ++it2;
+    }
+
 }
 
 void MineStormGame::initialize() {

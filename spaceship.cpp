@@ -7,35 +7,12 @@ SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
     _maxspeed = 12;
 }
 
-QPolygon SpaceShip::draw(QPainter &painter) {
-    QPolygon ship;
+void SpaceShip::draw(QPainter &painter) {
 
-//    ship.append(getAbsolutePoint(QPoint(-10, 0)));
-//    ship.append(getAbsolutePoint(QPoint(-10, 10)));
-//    ship.append(getAbsolutePoint(QPoint(0, 0)));
-//    ship.append(getAbsolutePoint(QPoint(3, -3)));
-//    ship.append(getAbsolutePoint(QPoint(0, -20)));
-//    ship.append(getAbsolutePoint(QPoint(-3, -3)));
-//    ship.append(getAbsolutePoint(QPoint(0, 0)));
-//    ship.append(getAbsolutePoint(QPoint(10, 10)));
-//    ship.append(getAbsolutePoint(QPoint(10, 0)));
-
-    ship.append(getAbsolutePoint(QPoint(0, -10)));
-    ship.append(getAbsolutePoint(QPoint(-10, -10)));
-    ship.append(getAbsolutePoint(QPoint(0, 0)));
-    ship.append(getAbsolutePoint(QPoint(3, 3)));
-    ship.append(getAbsolutePoint(QPoint(20, 0)));
-    ship.append(getAbsolutePoint(QPoint(3, -3)));
-    ship.append(getAbsolutePoint(QPoint(0, 0)));
-    ship.append(getAbsolutePoint(QPoint(-10, 10)));
-    ship.append(getAbsolutePoint(QPoint(0, 10)));
 
     QPainterPath path;
-    path.addPolygon(ship);
-
+    path.addPolygon(this->getPolygon());
     painter.drawPath(path);
-
-    return ship;
 }
 
 void SpaceShip::rotateLeft(){
@@ -79,4 +56,33 @@ QPoint SpaceShip::getAbsolutePoint(QPoint relativePoint) const {
                   cos(_orientation*M_PI/180)*(absolutePoint.x()-_position.x()) + sin(_orientation*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.y());
 }
 
+void SpaceShip::explode(){
+    std::cout<<"Le vaisseau explose !"<<std::endl;
+}
+
+QPolygon SpaceShip::getPolygon(){
+    QPolygon ship;
+
+//    ship.append(getAbsolutePoint(QPoint(-10, 0)));
+//    ship.append(getAbsolutePoint(QPoint(-10, 10)));
+//    ship.append(getAbsolutePoint(QPoint(0, 0)));
+//    ship.append(getAbsolutePoint(QPoint(3, -3)));
+//    ship.append(getAbsolutePoint(QPoint(0, -20)));
+//    ship.append(getAbsolutePoint(QPoint(-3, -3)));
+//    ship.append(getAbsolutePoint(QPoint(0, 0)));
+//    ship.append(getAbsolutePoint(QPoint(10, 10)));
+//    ship.append(getAbsolutePoint(QPoint(10, 0)));
+
+    ship.append(getAbsolutePoint(QPoint(0, -10)));
+    ship.append(getAbsolutePoint(QPoint(-10, -10)));
+    ship.append(getAbsolutePoint(QPoint(0, 0)));
+    ship.append(getAbsolutePoint(QPoint(3, 3)));
+    ship.append(getAbsolutePoint(QPoint(20, 0)));
+    ship.append(getAbsolutePoint(QPoint(3, -3)));
+    ship.append(getAbsolutePoint(QPoint(0, 0)));
+    ship.append(getAbsolutePoint(QPoint(-10, 10)));
+    ship.append(getAbsolutePoint(QPoint(0, 10)));
+
+    return ship;
+}
 

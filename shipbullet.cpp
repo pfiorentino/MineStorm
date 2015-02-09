@@ -5,13 +5,8 @@ ShipBullet::ShipBullet(QPoint position, int speed, int orientation):MovableObjec
     this->alive=80;
 }
 
-QPolygon ShipBullet::draw(QPainter &painter) {
-    QVector<QPoint> tab;
-    tab.push_back(_position);
-    QPolygon bull = QPolygon(tab);
+void ShipBullet::draw(QPainter &painter) {
     painter.drawPoint(_position);
-
-    return bull;
 }
 
 bool ShipBullet::outOfScreen(){
@@ -24,4 +19,13 @@ bool ShipBullet::outOfScreen(){
 
 int ShipBullet::getAlive() {
     return this->alive;
+}
+
+void ShipBullet::explode(){
+    std::cout<<"La balle du vaisseau explose !"<<std::endl;
+}
+
+QPolygon ShipBullet::getPolygon(){
+    QPolygon bullet;
+    bullet.append(this->getPosition());
 }

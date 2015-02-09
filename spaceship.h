@@ -8,13 +8,15 @@ class SpaceShip : public MovableObject
 {
 public:
     SpaceShip(QPoint position = QPoint(200, 300), int orientation = 180);
-    QPolygon draw(QPainter &painter);
+    void draw(QPainter &painter);
     void rotateLeft();
     void rotateRight();
     void accelerate();
     void stopAcceleration();
     int getOrientation();
     void stop();
+    void explode();
+    QPolygon getPolygon();
 
 private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;

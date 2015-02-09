@@ -11,10 +11,13 @@ public:
     Mine(int size, QPoint position);
     Mine(int size, QPoint position, int speed, int orientation);
 
-    QPolygon draw(QPainter &painter);
+    void draw(QPainter &painter);
     void spawn();
     void move();
     void eclose();
+    void explode();
+    QPolygon getPolygon();
+
 private:
     int _size;
     QPoint _position;

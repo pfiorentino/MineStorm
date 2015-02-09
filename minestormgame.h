@@ -3,9 +3,9 @@
 #include "game.h"
 
 #include <vector>
-
+#include<tuple>
 #include "spaceship.h"
-
+#include "mine.h"
 class MineStormGame : public Game
 {
     Q_OBJECT
@@ -18,14 +18,13 @@ private:
     void initialize();
     SpaceShip *_ship;
     std::vector<ShipBullet> _bullets;
+    std::vector<Mine> _mines;
     void fire();
     bool _leftKeyDown;
     bool _rightKeyDown;
     bool _upKeyDown;
     bool _downKeyDown; //Touche de test, à enlever dans la version finale
     bool _spaceKeyDown;
-    QVector<QPolygon> _listMine;
-    QVector<QPolygon> _listBullets;
 };
 
 #endif // MINESTORMGAME_H

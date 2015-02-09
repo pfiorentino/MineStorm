@@ -4,12 +4,13 @@
 #include <QPoint>
 #include <QPainter>
 #include <math.h>
+#include<iostream>
 
 class MovableObject
 {
 public:
     MovableObject(QPoint position = QPoint(0, 0), int speed = 0, int direction = 0);
-    virtual QPolygon draw(QPainter &painter) = 0;
+    virtual void draw(QPainter &painter) = 0;
 
     QPoint getPosition();
 
@@ -20,6 +21,9 @@ public:
     int getDirection();
 
     void move();
+    void explode();
+
+    QPolygon getPolygon();
 protected:
     QPoint _position;
     int _direction;

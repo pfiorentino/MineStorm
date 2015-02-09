@@ -6,9 +6,11 @@ class ShipBullet : public MovableObject
 {
 public:
     ShipBullet(QPoint position, int speed, int orientation);
-    QPolygon draw(QPainter &painter);
+    void draw(QPainter &painter);
     bool outOfScreen();
     int getAlive();
+    void explode();
+    QPolygon getPolygon();
 };
 
 #endif // SHIPBULLET_H
