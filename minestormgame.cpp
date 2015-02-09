@@ -9,7 +9,7 @@
 #include <iostream>
 #include <random>
 
-MineStormGame::MineStormGame(QObject *parent):Game(parent) {
+MineStormGame::MineStormGame(QObject *parent):Game(parent), _nbLife(3) {
     initialize();
 }
 
@@ -45,15 +45,14 @@ void MineStormGame::draw(QPainter &painter) {
     _ship->draw(painter);
 
     Life life;
-    life.draw(painter, QPoint(380, 580));
-    life.draw(painter, QPoint(365, 580));
-    life.draw(painter, QPoint(350, 580));
+    life.drawAllLifes(painter,this->_nbLife);
 
 
 
 
     std::vector<ShipBullet>::iterator it = _bullets.begin();
-    while(it != _bullets.end()) {
+    while(it != _bullets.end()){
+
         if(it->getAlive()<1){
             it = _bullets.erase(it);
         } else {
@@ -62,32 +61,37 @@ void MineStormGame::draw(QPainter &painter) {
             ++it;
         }
     }
-
-
     std::vector<Mine>::iterator it2 = _mines.begin();
-
+    bool destroyed = false;
     while(it2 != _mines.end()){
         it2->move();
         it2->draw(painter);
-
         it = _bullets.begin();
-        while(it != _bullets.end()){
-            //std::cout<<"Je passe dans le while bullet"<<std::endl;
-            if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
-                it2->explode();
-                it->explode();
-                std::cout<<"Je collisionne"<<std::endl;
-            }
-            ++it;
-        }
 
         if(!it2->getPolygon().intersected(_ship->getPolygonDetection()).isEmpty()){
             it2->explode();
             _ship->explode();
+            this->looseLife();
+            _ship = new SpaceShip();
         }
-        ++it2;
-    }
+        destroyed = false;
 
+        while(it != _bullets.end()){
+            if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
+                it2->explode();
+                it->explode();
+                it = _bullets.erase(it);
+                it2 = _mines.erase(it2);
+                destroyed = true;
+            }
+            else{
+            ++it;
+            }
+        }
+        if(!destroyed){
+            ++it2;
+        }
+    }
 }
 
 void MineStormGame::initialize() {
@@ -105,8 +109,6 @@ void MineStormGame::initialize() {
 
 void MineStormGame::fire() {
     _bullets.push_back(ShipBullet(_ship->getPosition(),18, _ship->getOrientation()));
-    std::cout<<"Fire ! "<<_bullets.size()<<std::endl;
-
 }
 
 void MineStormGame::keyPressed( int key ) {
@@ -159,6 +161,14 @@ void MineStormGame::keyReleased( int key ) {
         break;
 
     }
+}
+
+int MineStormGame::getNbLifes() const{
+    return this->_nbLife;
+}
+
+void MineStormGame::looseLife(){
+    this->_nbLife--;
 }
 
 

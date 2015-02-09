@@ -65,7 +65,7 @@ QPoint SpaceShip::getAbsolutePointPrec(QPoint relativePoint) const {
 }
 
 void SpaceShip::explode(){
-    std::cout<<"Le vaisseau explose !"<<std::endl;
+    //std::cout<<"Le vaisseau explose !"<<std::endl;
 }
 
 QPolygon SpaceShip::getPolygon(){

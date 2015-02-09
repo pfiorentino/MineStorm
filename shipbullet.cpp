@@ -22,7 +22,7 @@ int ShipBullet::getAlive() {
 }
 
 void ShipBullet::explode(){
-    std::cout<<"La balle du vaisseau explose !"<<std::endl;
+    //std::cout<<"La balle du vaisseau explose !"<<std::endl;
 }
 
 QPolygon ShipBullet::getPolygon(){
