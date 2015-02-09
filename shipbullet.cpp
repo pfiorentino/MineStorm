@@ -10,8 +10,8 @@ void ShipBullet::draw(QPainter &painter) {
     //painter.drawPolygon(this->getPolygonDetection());
 }
 
-int ShipBullet::isAlive() {
-    return this->alive;
+bool ShipBullet::isAlive() {
+    return this->alive > 0;
 }
 
 void ShipBullet::explode(){

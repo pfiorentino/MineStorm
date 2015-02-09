@@ -7,7 +7,7 @@ class ShipBullet : public MovableObject
 public:
     ShipBullet(QPoint position, int speed, int orientation);
     void draw(QPainter &painter);
-    int isAlive();
+    bool isAlive();
     void explode();
     QPolygon getPolygon();
     QPolygon getPolygonDetection();

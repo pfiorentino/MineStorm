@@ -58,15 +58,17 @@ void MineStormGame::draw(QPainter &painter) {
 
     std::vector<ShipBullet>::iterator it = _bullets.begin();
     while(it != _bullets.end()){
-
-        if(it->isAlive()<1){
-            it = _bullets.erase(it);
-        } else {
+        if(it->isAlive()){
             it->move(size());
             it->draw(painter);
             ++it;
+        } else {
+            it = _bullets.erase(it);
         }
     }
+
+    _score = _mines.size();
+
     std::vector<Mine>::iterator it2 = _mines.begin();
     bool destroyed = false;
     bool needEclosion = true;
@@ -79,7 +81,7 @@ void MineStormGame::draw(QPainter &painter) {
         it2->draw(painter);
         it = _bullets.begin();
 
-        if(!it2->getPolygon().intersected(_ship->getPolygonDetection()).isEmpty()){
+        if(!it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()){
             it2->explode();
             _ship->explode();
 

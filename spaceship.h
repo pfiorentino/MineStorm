@@ -17,7 +17,6 @@ public:
     void stop();
     void explode();
     QPolygon getPolygon();
-    QPolygon getPolygonDetection();
 
 private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;

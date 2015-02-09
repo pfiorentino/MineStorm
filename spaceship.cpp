@@ -85,21 +85,3 @@ QPolygon SpaceShip::getPolygon(){
 }
 
 
-QPolygon SpaceShip::getPolygonDetection(){
-    QPolygon ship;
-
-    ship.append(getAbsolutePoint(QPoint(0, -10)));
-    ship.append(getAbsolutePoint(QPoint(-10, -10)));
-    ship.append(getAbsolutePoint(QPoint(0, 0)));
-    ship.append(getAbsolutePoint(QPoint(3, 3)));
-    ship.append(getAbsolutePoint(QPoint(20, 0)));
-    ship.append(getAbsolutePoint(QPoint(3, -3)));
-    ship.append(getAbsolutePoint(QPoint(0, 0)));
-    ship.append(getAbsolutePoint(QPoint(-10, 10)));
-    ship.append(getAbsolutePoint(QPoint(0, 10)));
-
-    return ship;
-
-}
-
-
