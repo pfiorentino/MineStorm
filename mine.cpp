@@ -4,11 +4,14 @@
 
 
 Mine::Mine(int size, QPoint position, int speed, int direction):MovableObject(position, speed, direction), _size(size) {
-
+    this->_born=false;
 }
 
 void Mine::draw(QPainter &painter) {
-    painter.drawPolygon(this->getPolygon());
+    if(_born)
+        painter.drawPolygon(this->getPolygon());
+    else
+        painter.drawPoint(this->_position);
 }
 
 void Mine::spawn(){
@@ -16,21 +19,26 @@ void Mine::spawn(){
 }
 
 void Mine::move(){
-    _position.setX(_position.x()+_speed.x());
-    _position.setY(_position.y()+_speed.y());
+    if(!_born) {
 
-    if (_position.x() < 0){
-        _position.setX(_position.x()+400);
     }
-    else if (_position.x() > 400) {
-        _position.setX(_position.x()-400);
-    }
+    else {
+        _position.setX(_position.x()+_speed.x());
+        _position.setY(_position.y()+_speed.y());
 
-    if (_position.y() < 0){
-        _position.setY(_position.y()+600);
-    }
-    else if (_position.y() > 600) {
-        _position.setY(_position.y()-600);
+        if (_position.x() < 0){
+            _position.setX(_position.x()+400);
+        }
+        else if (_position.x() > 400) {
+            _position.setX(_position.x()-400);
+        }
+
+        if (_position.y() < 0){
+            _position.setY(_position.y()+600);
+        }
+        else if (_position.y() > 600) {
+            _position.setY(_position.y()-600);
+        }
     }
 }
 
@@ -53,4 +61,12 @@ QPolygon Mine::getPolygon(){
     mine.append(QPoint(_position.x()+(15/_size), _position.y()+(7/_size)));
 
     return mine;
+}
+
+bool Mine::getBorn() {
+    return _born;
+}
+
+void Mine::setBorn(bool born) {
+    _born=born;
 }
