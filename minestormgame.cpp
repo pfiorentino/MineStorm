@@ -7,23 +7,26 @@
 #include <QColor>
 
 #include <iostream>
+#include <random>
 
 MineStormGame::MineStormGame(QObject *parent):Game(parent) {
     initialize();
-   /* Mine mine(1, QPoint(100,400));
-    _mines.push_back(mine);*/
+}
 
-   /* Mine mineMed(2, QPoint(50,250));
-    _mines.push_back(mineMed);*/
+void MineStormGame::generateMine(int small, int medium, int big) {
 
-    /*Mine mineSmall(4, QPoint(250,250));
-    _mines.push_back(mineSmall);*/
-
-     Mine mine(1, QPoint(100,400));
-     _mines.push_back(mine);
-
-     Mine mine1(1, QPoint(250,250));
-     _mines.push_back(mine1);
+    for (int i = 0; i<small; i++) {
+        Mine mine(4, QPoint(rand()%400,rand()%600),rand()%5 +2,rand()%360);
+        _mines.push_back(mine);
+    }
+    for (int i = 0; i<medium; i++) {
+        Mine mine(2, QPoint(rand()%400,rand()%600),rand()%5 +2,rand()%360);
+        _mines.push_back(mine);
+    }
+    for (int i = 0; i<big; i++) {
+        Mine mine(1, QPoint(rand()%400,rand()%600),rand()%5 +2,rand()%360);
+        _mines.push_back(mine);
+    }
 }
 
 void MineStormGame::draw(QPainter &painter) {
@@ -64,6 +67,7 @@ void MineStormGame::draw(QPainter &painter) {
     std::vector<Mine>::iterator it2 = _mines.begin();
 
     while(it2 != _mines.end()){
+        it2->move();
         it2->draw(painter);
 
         it = _bullets.begin();
@@ -89,12 +93,14 @@ void MineStormGame::draw(QPainter &painter) {
 void MineStormGame::initialize() {
     _ship = new SpaceShip();
     _bullets.clear();
+    _mines.clear();
     _score = 0;
     _upKeyDown = false;
     _leftKeyDown = false;
     _rightKeyDown = false;
     _downKeyDown = false;
     _spaceKeyDown =false;
+    generateMine(5,5,5);
 }
 
 void MineStormGame::fire() {
@@ -117,7 +123,7 @@ void MineStormGame::keyPressed( int key ) {
         case Qt::Key_Down:
             _downKeyDown = true;
             break;
-        case Qt::Key_Space:
+        case Qt::Key_Space || Qt::Key_Control:
             _spaceKeyDown =true;
             break;
         case Qt::Key_Return:
@@ -148,7 +154,7 @@ void MineStormGame::keyReleased( int key ) {
             _downKeyDown = false;
             _ship->stop();
         break;
-        case Qt::Key_Space:
+        case Qt::Key_Space || Qt::Key_Control:
             _spaceKeyDown = false;
         break;
 
