@@ -18,27 +18,12 @@ void Mine::spawn(){
 
 }
 
-void Mine::move(){
+void Mine::move(QSize bounds){
     if(!_born) {
 
     }
     else {
-        _position.setX(_position.x()+_speed.x());
-        _position.setY(_position.y()+_speed.y());
-
-        if (_position.x() < 0){
-            _position.setX(_position.x()+400);
-        }
-        else if (_position.x() > 400) {
-            _position.setX(_position.x()-400);
-        }
-
-        if (_position.y() < 0){
-            _position.setY(_position.y()+600);
-        }
-        else if (_position.y() > 600) {
-            _position.setY(_position.y()-600);
-        }
+        MovableObject::move(bounds);
     }
 }
 

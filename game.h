@@ -23,7 +23,7 @@ public:
      * @param size taille de la grille de jeu
      * @param parent
      */
-    Game(QObject *parent);
+    Game(const QSize &size, QObject *parent);
     /**
      * @brief start démarre le jeu
      */
@@ -39,6 +39,12 @@ public:
 
     int getScore() const;
     void setScore(int score);
+
+    /**
+     * @brief size retourne la taille du jeu
+     * @return
+     */
+    const QSize &size() const;
 
     /**
      * @brief draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées
@@ -81,6 +87,7 @@ private slots:
     void update();
 
 private:
+    QSize _size;
     QTimer _timer;
     bool _started;
     bool _isRunning;

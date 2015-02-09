@@ -7,14 +7,7 @@ ShipBullet::ShipBullet(QPoint position, int speed, int orientation):MovableObjec
 
 void ShipBullet::draw(QPainter &painter) {
     painter.drawPolygon(this->getPolygon());
-}
-
-bool ShipBullet::outOfScreen(){
-    if (_position.x() > 400 || _position.x() < 0 ||
-        _position.y() > 600 || _position.y() < 0)
-        return true;
-    else
-        return false;
+    //painter.drawPolygon(this->getPolygonDetection());
 }
 
 int ShipBullet::getAlive() {
@@ -34,12 +27,11 @@ QPolygon ShipBullet::getPolygon(){
 
 QPolygon ShipBullet::getPolygonDetection(){
     QPolygon bullet;
-    QPoint pos1 (this->getPosition().x(),this->getPosition().y());
-    QPoint pos2 (this->_previousPosition.x(),this->_previousPosition.y());
-    QPoint pos3 (this->_previousPosition.x()+1,this->_previousPosition.y());
-    bullet.append(pos1);
-    bullet.append(pos2);
-    bullet.append(pos3);
+
+    bullet.append(QPoint(_position.x()+1, _position.y()+1));
+    bullet.append(QPoint(_position.x()+1, _position.y()-1));
+    bullet.append(QPoint(_position.x()-1, _position.y()-1));
+    bullet.append(QPoint(_position.x()-1, _position.y()+1));
 
     return bullet;
 }

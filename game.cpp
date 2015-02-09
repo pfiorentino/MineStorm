@@ -1,8 +1,12 @@
 #include "game.h"
 
-Game::Game(QObject *parent):QObject(parent), _isRunning(false){
+Game::Game(const QSize &size, QObject *parent):QObject(parent), _size(size), _isRunning(false){
     _timer.setSingleShot(false);
     connect(&_timer,SIGNAL(timeout()),this,SLOT(update()));
+}
+
+const QSize &Game::size() const {
+    return _size;
 }
 
 void Game::start() {

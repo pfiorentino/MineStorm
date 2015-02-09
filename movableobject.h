@@ -20,7 +20,7 @@ public:
     void setDirection(int angle);
     int getDirection();
 
-    void move();
+    void move(QSize bounds);
     void explode();
 
     QPolygon getPolygon();
@@ -31,7 +31,6 @@ protected:
     int _direction;
     QPoint _speed;
     int alive;
-    QPoint _previousPosition;
 
 private:
 };

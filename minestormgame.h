@@ -12,7 +12,7 @@ class MineStormGame : public Game
 {
     Q_OBJECT
 public:
-    MineStormGame(QObject *parent = nullptr);
+    MineStormGame(const QSize &size, QObject *parent = nullptr);
     virtual void draw(QPainter &painter);
     void keyPressed( int key );
     void keyReleased( int key );

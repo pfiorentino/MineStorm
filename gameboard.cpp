@@ -4,13 +4,13 @@
 #include <QPainter>
 #include <QColor>
 #include <QLabel>
-#include <QMouseEvent>
+#include <QKeyEvent>
 
 #include <iostream>
 
 GameBoard::GameBoard(Game *game, QWidget *parent) : QWidget(parent), _game(game) {
     connect(_game,SIGNAL(changed()),this,SLOT(update()));
-    setMinimumSize(400,600);
+    setMinimumSize(_game->size());
     setFocusPolicy(Qt::StrongFocus);
 
 
@@ -22,7 +22,7 @@ GameBoard::GameBoard(Game *game, QWidget *parent) : QWidget(parent), _game(game)
     _startLabel->setText("Press Enter To Play");
     _startLabel->setAlignment(Qt::AlignCenter);
     _startLabel->setFont(QFont("Press Start 2P", 15));
-    _startLabel->resize(400, 30);
+    _startLabel->resize(this->width(), 30);
     _startLabel->move(0, (this->height()-_startLabel->height())/2);
     _startLabel->show();
 }

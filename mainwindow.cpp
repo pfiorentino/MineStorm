@@ -1,12 +1,13 @@
 #include "mainwindow.h"
 #include "gameboard.h"
+#include "game.h"
 
 #include <QPalette>
 
 MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
     auto window = new QWidget(this);
     window->setAutoFillBackground(true);
-    window->setFixedSize(400, 600);
+    window->setFixedSize(game->size());
 
     QPalette pal(palette());
     pal.setColor(QPalette::Background, Qt::black);

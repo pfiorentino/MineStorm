@@ -1,11 +1,9 @@
 #include "mainwindow.h"
 #include "minestormgame.h"
 
-#include <iostream>
 #include <QFontDatabase>
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QRect>
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +11,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    MineStormGame game;
+    MineStormGame game(QSize(500, 700));
     MainWindow mainWindow(&game);
 
     // Permet de centrer la fenêtre principale à l'écran

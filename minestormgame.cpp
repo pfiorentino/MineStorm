@@ -8,7 +8,7 @@
 #include <iostream>
 #include <random>
 
-MineStormGame::MineStormGame(QObject *parent):Game(parent) {
+MineStormGame::MineStormGame(const QSize &size, QObject *parent):Game(size, parent) {
     initialize();
 
     Explosion expl(1, QPoint(100, 200));
@@ -31,9 +31,7 @@ void MineStormGame::generateMines(int small, int medium, int big) {
 }
 
 void MineStormGame::draw(QPainter &painter) {
-
-
-    _ship->move();
+    _ship->move(size());
 
     if (_upKeyDown)
         _ship->accelerate();
@@ -48,9 +46,9 @@ void MineStormGame::draw(QPainter &painter) {
     _ship->draw(painter);
 
     Life life;
-    life.draw(painter, QPoint(380, 580));
-    life.draw(painter, QPoint(365, 580));
-    life.draw(painter, QPoint(350, 580));
+    life.draw(painter, QPoint(size().width()-20, size().height()-20));
+    life.draw(painter, QPoint(size().width()-20-15, size().height()-20));
+    life.draw(painter, QPoint(size().width()-20-30, size().height()-20));
 
     Explosion expl(1, QPoint(100, 200));
     expl.draw(painter);
@@ -61,7 +59,7 @@ void MineStormGame::draw(QPainter &painter) {
         if(it->getAlive()<1){
             it = _bullets.erase(it);
         } else {
-            it->move();
+            it->move(size());
             it->draw(painter);
             ++it;
         }
@@ -75,7 +73,7 @@ void MineStormGame::draw(QPainter &painter) {
             it2->setBorn(true);
             needEclosion = false;
         }
-        it2->move();
+        it2->move(size());
         it2->draw(painter);
 
         it = _bullets.begin();
@@ -99,7 +97,7 @@ void MineStormGame::draw(QPainter &painter) {
 }
 
 void MineStormGame::initialize() {
-    _ship = new SpaceShip();
+    _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
     _bullets.clear();
     _mines.clear();
     _score = 0;

@@ -15,7 +15,7 @@ public:
     void spawn();
     void eclose();
     void explode();
-    void move();
+    void move(QSize bounds);
     QPolygon getPolygon();
     bool getBorn();
     void setBorn(bool born);
