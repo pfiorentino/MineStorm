@@ -17,9 +17,13 @@ public:
     void explode();
     void move();
     QPolygon getPolygon();
+    bool getBorn();
+    void setBorn(bool born);
+
 
 private:
     int _size;
+    bool _born;
 };
 
 #endif // MINE_H

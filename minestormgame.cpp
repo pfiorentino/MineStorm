@@ -63,7 +63,12 @@ void MineStormGame::draw(QPainter &painter) {
     }
     std::vector<Mine>::iterator it2 = _mines.begin();
     bool destroyed = false;
+    bool needEclosion = true;
     while(it2 != _mines.end()){
+        if (it2->getBorn() == false && needEclosion) {
+            it2->setBorn(true);
+            needEclosion = false;
+        }
         it2->move();
         it2->draw(painter);
         it = _bullets.begin();
@@ -126,6 +131,7 @@ void MineStormGame::keyPressed( int key ) {
             _downKeyDown = true;
             break;
         case Qt::Key_Space:
+        case Qt::Key_Control:
             _spaceKeyDown = true;
             break;
         case Qt::Key_Return:
@@ -157,6 +163,7 @@ void MineStormGame::keyReleased( int key ) {
             _ship->stop();
         break;
         case Qt::Key_Space:
+        case Qt::Key_Control:
             _spaceKeyDown = false;
         break;
 
