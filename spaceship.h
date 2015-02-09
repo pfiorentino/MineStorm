@@ -17,9 +17,11 @@ public:
     void stop();
     void explode();
     QPolygon getPolygon();
+    QPolygon getPolygonDetection();
 
 private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;
+    QPoint getAbsolutePointPrec(QPoint relativePoint) const;
     int _orientation;
     int _acceleration;
     int _maxspeed;

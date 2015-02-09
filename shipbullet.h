@@ -11,6 +11,7 @@ public:
     int getAlive();
     void explode();
     QPolygon getPolygon();
+    QPolygon getPolygonDetection();
 };
 
 #endif // SHIPBULLET_H

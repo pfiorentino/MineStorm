@@ -56,6 +56,14 @@ QPoint SpaceShip::getAbsolutePoint(QPoint relativePoint) const {
                   cos(_orientation*M_PI/180)*(absolutePoint.x()-_position.x()) + sin(_orientation*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.y());
 }
 
+QPoint SpaceShip::getAbsolutePointPrec(QPoint relativePoint) const {
+    QPoint absolutePoint = QPoint(_previousPosition.x()+relativePoint.x(), _previousPosition.y()+relativePoint.y());
+
+    return QPoint(sin(_orientation*M_PI/180)*(absolutePoint.x()-_previousPosition.x()) - cos(_orientation*M_PI/180)*(absolutePoint.y()-_previousPosition.y()) + _previousPosition.x(),
+                  cos(_orientation*M_PI/180)*(absolutePoint.x()-_previousPosition.x()) + sin(_orientation*M_PI/180)*(absolutePoint.y()-_previousPosition.y()) + _previousPosition.y());
+
+}
+
 void SpaceShip::explode(){
     std::cout<<"Le vaisseau explose !"<<std::endl;
 }
@@ -85,4 +93,33 @@ QPolygon SpaceShip::getPolygon(){
 
     return ship;
 }
+
+
+QPolygon SpaceShip::getPolygonDetection(){
+    QPolygon ship;
+
+    ship.append(getAbsolutePoint(QPoint(0, -10)));
+    ship.append(getAbsolutePoint(QPoint(-10, -10)));
+    ship.append(getAbsolutePoint(QPoint(0, 0)));
+    ship.append(getAbsolutePoint(QPoint(3, 3)));
+    ship.append(getAbsolutePoint(QPoint(20, 0)));
+    ship.append(getAbsolutePoint(QPoint(3, -3)));
+    ship.append(getAbsolutePoint(QPoint(0, 0)));
+    ship.append(getAbsolutePoint(QPoint(-10, 10)));
+    ship.append(getAbsolutePoint(QPoint(0, 10)));
+
+    ship.append(getAbsolutePointPrec(QPoint(0, -10)));
+    ship.append(getAbsolutePointPrec(QPoint(-10, -10)));
+    ship.append(getAbsolutePointPrec(QPoint(0, 0)));
+    ship.append(getAbsolutePointPrec(QPoint(3, 3)));
+    ship.append(getAbsolutePointPrec(QPoint(20, 0)));
+    ship.append(getAbsolutePointPrec(QPoint(3, -3)));
+    ship.append(getAbsolutePointPrec(QPoint(0, 0)));
+    ship.append(getAbsolutePointPrec(QPoint(-10, 10)));
+    ship.append(getAbsolutePointPrec(QPoint(0, 10)));
+
+    return ship;
+
+}
+
 

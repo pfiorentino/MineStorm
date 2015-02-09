@@ -10,14 +10,20 @@
 
 MineStormGame::MineStormGame(QObject *parent):Game(parent) {
     initialize();
-    Mine mine(1, QPoint(100,400));
-    _mines.push_back(mine);
+   /* Mine mine(1, QPoint(100,400));
+    _mines.push_back(mine);*/
 
-    Mine mineMed(2, QPoint(50,250));
-    _mines.push_back(mineMed);
+   /* Mine mineMed(2, QPoint(50,250));
+    _mines.push_back(mineMed);*/
 
-    Mine mineSmall(4, QPoint(250,250));
-    _mines.push_back(mineSmall);
+    /*Mine mineSmall(4, QPoint(250,250));
+    _mines.push_back(mineSmall);*/
+
+     Mine mine(1, QPoint(100,400));
+     _mines.push_back(mine);
+
+     Mine mine1(1, QPoint(250,250));
+     _mines.push_back(mine1);
 }
 
 void MineStormGame::draw(QPainter &painter) {
@@ -54,21 +60,24 @@ void MineStormGame::draw(QPainter &painter) {
         }
     }
 
-    it = _bullets.begin();
+
     std::vector<Mine>::iterator it2 = _mines.begin();
 
     while(it2 != _mines.end()){
         it2->draw(painter);
+
+        it = _bullets.begin();
         while(it != _bullets.end()){
-           // std::cout<<"Je passe dans le while bullet"<<std::endl;
-            if(!it2->getPolygon().intersected(it->getPolygon()).isEmpty()){
+            //std::cout<<"Je passe dans le while bullet"<<std::endl;
+            if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
                 it2->explode();
                 it->explode();
                 std::cout<<"Je collisionne"<<std::endl;
             }
             ++it;
         }
-        if(!it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()){
+
+        if(!it2->getPolygon().intersected(_ship->getPolygonDetection()).isEmpty()){
             it2->explode();
             _ship->explode();
         }

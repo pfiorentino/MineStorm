@@ -28,5 +28,18 @@ void ShipBullet::explode(){
 QPolygon ShipBullet::getPolygon(){
     QPolygon bullet;
     bullet.append(this->getPosition());
+    bullet.append(QPoint(this->getPosition().x(),this->getPosition().y()+1));
+    return bullet;
+}
+
+QPolygon ShipBullet::getPolygonDetection(){
+    QPolygon bullet;
+    QPoint pos1 (this->getPosition().x(),this->getPosition().y());
+    QPoint pos2 (this->_previousPosition.x(),this->_previousPosition.y());
+    QPoint pos3 (this->_previousPosition.x()+1,this->_previousPosition.y());
+    bullet.append(pos1);
+    bullet.append(pos2);
+    bullet.append(pos3);
+
     return bullet;
 }
