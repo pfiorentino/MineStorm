@@ -17,15 +17,15 @@ MineStormGame::MineStormGame(const QSize &size, QObject *parent):Game(size, pare
 void MineStormGame::generateMines(int small, int medium, int big) {
 
     for (int i = 0; i<small; i++) {
-        Mine mine(4, QPoint(rand()%400,rand()%600),rand()%5 +2,rand()%360);
+        Mine mine(4, getRandomPoint(),rand()%5 +2,rand()%360);
         _mines.push_back(mine);
     }
     for (int i = 0; i<medium; i++) {
-        Mine mine(2, QPoint(rand()%400,rand()%600),rand()%5 +2,rand()%360);
+        Mine mine(2, getRandomPoint(),rand()%5 +2,rand()%360);
         _mines.push_back(mine);
     }
     for (int i = 0; i<big; i++) {
-        Mine mine(1, QPoint(rand()%400,rand()%600),rand()%5 +2,rand()%360);
+        Mine mine(1, getRandomPoint(),rand()%5 +2,rand()%360);
         _mines.push_back(mine);
     }
 }
@@ -46,16 +46,15 @@ void MineStormGame::draw(QPainter &painter) {
     _ship->draw(painter);
 
     Life life;
-    life.draw(painter, QPoint(size().width()-20, size().height()-20));
-    life.draw(painter, QPoint(size().width()-20-15, size().height()-20));
-    life.draw(painter, QPoint(size().width()-20-30, size().height()-20));
+    life.drawAllLifes(painter,this->_nbLife);
 
     Explosion expl(1, QPoint(100, 200));
     expl.draw(painter);
 
 
     std::vector<ShipBullet>::iterator it = _bullets.begin();
-    while(it != _bullets.end()) {
+    while(it != _bullets.end()){
+
         if(it->getAlive()<1){
             it = _bullets.erase(it);
         } else {
@@ -64,9 +63,8 @@ void MineStormGame::draw(QPainter &painter) {
             ++it;
         }
     }
-
-
     std::vector<Mine>::iterator it2 = _mines.begin();
+    bool destroyed = false;
     bool needEclosion = true;
     while(it2 != _mines.end()){
         if (it2->getBorn() == false && needEclosion) {
@@ -75,25 +73,32 @@ void MineStormGame::draw(QPainter &painter) {
         }
         it2->move(size());
         it2->draw(painter);
-
         it = _bullets.begin();
-        while(it != _bullets.end()){
-            //std::cout<<"Je passe dans le while bullet"<<std::endl;
-            if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
-                it2->explode();
-                it->explode();
-                std::cout<<"Je collisionne"<<std::endl;
-            }
-            ++it;
-        }
 
         if(!it2->getPolygon().intersected(_ship->getPolygonDetection()).isEmpty()){
             it2->explode();
             _ship->explode();
+            this->looseLife();
+            _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
         }
-        ++it2;
-    }
+        destroyed = false;
 
+        while(it != _bullets.end()){
+            if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
+                it2->explode();
+                it->explode();
+                it = _bullets.erase(it);
+                it2 = _mines.erase(it2);
+                destroyed = true;
+            }
+            else{
+            ++it;
+            }
+        }
+        if(!destroyed){
+            ++it2;
+        }
+    }
 }
 
 void MineStormGame::initialize() {
@@ -101,6 +106,7 @@ void MineStormGame::initialize() {
     _bullets.clear();
     _mines.clear();
     _score = 0;
+    _nbLife = 4;
     _upKeyDown = false;
     _leftKeyDown = false;
     _rightKeyDown = false;
@@ -109,10 +115,12 @@ void MineStormGame::initialize() {
     generateMines(5,5,5);
 }
 
+QPoint MineStormGame::getRandomPoint() {
+    return QPoint(rand()%size().width(),rand()%size().height());
+}
+
 void MineStormGame::fire() {
     _bullets.push_back(ShipBullet(_ship->getPosition(),18, _ship->getOrientation()));
-    std::cout<<"Fire ! "<<_bullets.size()<<std::endl;
-
 }
 
 void MineStormGame::keyPressed( int key ) {
@@ -167,6 +175,14 @@ void MineStormGame::keyReleased( int key ) {
         break;
 
     }
+}
+
+int MineStormGame::getNbLifes() const{
+    return this->_nbLife;
+}
+
+void MineStormGame::looseLife(){
+    this->_nbLife--;
 }
 
 

@@ -17,8 +17,11 @@ public:
     void keyPressed( int key );
     void keyReleased( int key );
     void generateMines(int small, int medium, int big);
+    int getNbLifes() const;
+    void looseLife();
 private:
     void initialize();
+    QPoint getRandomPoint();
     SpaceShip *_ship;
     std::vector<ShipBullet> _bullets;
     std::vector<Mine> _mines;
@@ -28,6 +31,7 @@ private:
     bool _upKeyDown;
     bool _downKeyDown; //Touche de test, à enlever dans la version finale
     bool _spaceKeyDown;
+    int _nbLife;
 };
 
 #endif // MINESTORMGAME_H

@@ -32,7 +32,7 @@ void Mine::eclose(){
 }
 
 void Mine::explode(){
-    std::cout<<"La mine explose !"<<std::endl;
+    //std::cout<<"La mine explose !"<<std::endl;
 }
 
 QPolygon Mine::getPolygon(){

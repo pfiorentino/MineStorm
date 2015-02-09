@@ -4,7 +4,9 @@
 
 Life::Life()
 {
-
+    _listLife.push_back(QPoint(350,580));
+    _listLife.push_back(QPoint(365,580));
+    _listLife.push_back(QPoint(380,580));
 }
 
 void Life::draw(QPainter &painter, QPoint position) {
@@ -25,4 +27,12 @@ void Life::draw(QPainter &painter, QPoint position) {
 
     painter.drawPath(path);
 }
+
+void Life::drawAllLifes(QPainter &painter, int nbLife){
+    for(int i =0; i<nbLife;i++){
+        this->draw(painter,this->_listLife[i]);
+    }
+
+}
+
 
