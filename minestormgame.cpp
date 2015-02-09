@@ -10,6 +10,14 @@
 
 MineStormGame::MineStormGame(QObject *parent):Game(parent) {
     initialize();
+    Mine mine(1, QPoint(100,400));
+    _mines.push_back(mine);
+
+    Mine mineMed(2, QPoint(50,250));
+    _mines.push_back(mineMed);
+
+    Mine mineSmall(4, QPoint(250,250));
+    _mines.push_back(mineSmall);
 }
 
 void MineStormGame::draw(QPainter &painter) {
@@ -32,17 +40,6 @@ void MineStormGame::draw(QPainter &painter) {
     life.draw(painter, QPoint(365, 580));
     life.draw(painter, QPoint(350, 580));
 
-    Mine mine(1, QPoint(100,400));
-    mine.draw(painter);
-    _mines.push_back(mine);
-
-    Mine mineMed(2, QPoint(50,250));
-    mineMed.draw(painter);
-    _mines.push_back(mineMed);
-
-    Mine mineSmall(4, QPoint(250,250));
-    mineSmall.draw(painter);
-    _mines.push_back(mineSmall);
 
 
 
@@ -50,10 +47,9 @@ void MineStormGame::draw(QPainter &painter) {
     while(it != _bullets.end()) {
         if(it->getAlive()<1){
             it = _bullets.erase(it);
-            //_listBullets.pop_front();
         } else {
             it->move();
-         //   _listBullets.push_back(it->draw(painter));
+            it->draw(painter);
             ++it;
         }
     }
@@ -62,10 +58,13 @@ void MineStormGame::draw(QPainter &painter) {
     std::vector<Mine>::iterator it2 = _mines.begin();
 
     while(it2 != _mines.end()){
+        it2->draw(painter);
         while(it != _bullets.end()){
+           // std::cout<<"Je passe dans le while bullet"<<std::endl;
             if(!it2->getPolygon().intersected(it->getPolygon()).isEmpty()){
                 it2->explode();
                 it->explode();
+                std::cout<<"Je collisionne"<<std::endl;
             }
             ++it;
         }
@@ -91,6 +90,8 @@ void MineStormGame::initialize() {
 
 void MineStormGame::fire() {
     _bullets.push_back(ShipBullet(_ship->getPosition(),18, _ship->getOrientation()));
+ //   std::cout<<"Fire ! "<<_bullets.size()<<std::endl;
+
 }
 
 void MineStormGame::keyPressed( int key ) {

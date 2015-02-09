@@ -24,11 +24,14 @@ public:
     void explode();
 
     QPolygon getPolygon();
+    QPolygon getPolygonDetection();
+
 protected:
     QPoint _position;
     int _direction;
     QPoint _speed;
     int alive;
+    QPoint _previousPosition;
 
 private:
 };

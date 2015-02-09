@@ -3,6 +3,8 @@
 MovableObject::MovableObject(QPoint position, int speed, int direction)
     :_position(position), _direction(direction) {
     setSpeed(speed);
+    QPoint p;
+    _previousPosition = p;
 }
 
 QPoint MovableObject::getPosition() {
@@ -27,6 +29,7 @@ int MovableObject::getDirection(){
 }
 
 void MovableObject::move() {
+    this->_previousPosition = this->getPosition();
     _position.setX(_position.x()+_speed.x());
     _position.setY(_position.y()+_speed.y());
 

@@ -6,7 +6,7 @@ ShipBullet::ShipBullet(QPoint position, int speed, int orientation):MovableObjec
 }
 
 void ShipBullet::draw(QPainter &painter) {
-    painter.drawPoint(_position);
+    painter.drawPolygon(this->getPolygon());
 }
 
 bool ShipBullet::outOfScreen(){
@@ -28,4 +28,5 @@ void ShipBullet::explode(){
 QPolygon ShipBullet::getPolygon(){
     QPolygon bullet;
     bullet.append(this->getPosition());
+    return bullet;
 }
