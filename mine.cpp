@@ -3,13 +3,8 @@
 #include <QPolygon>
 
 
-Mine::Mine(int size, QPoint position): _size(size), _position(position) {
-    _speed.setX(rand()%200 - 100);
-    _speed.setY(rand()%200 - 100);
-}
+Mine::Mine(int size, QPoint position, int speed, int direction):MovableObject(position, speed, direction), _size(size) {
 
-Mine::Mine(int size, QPoint position, int speed, int orientation):MovableObject(position, speed, orientation) {
-    this->_size = size;
 }
 
 void Mine::draw(QPainter &painter) {
@@ -21,7 +16,22 @@ void Mine::spawn(){
 }
 
 void Mine::move(){
+    _position.setX(_position.x()+_speed.x());
+    _position.setY(_position.y()+_speed.y());
 
+    if (_position.x() < 0){
+        _position.setX(_position.x()+400);
+    }
+    else if (_position.x() > 400) {
+        _position.setX(_position.x()-400);
+    }
+
+    if (_position.y() < 0){
+        _position.setY(_position.y()+600);
+    }
+    else if (_position.y() > 600) {
+        _position.setY(_position.y()-600);
+    }
 }
 
 void Mine::eclose(){
