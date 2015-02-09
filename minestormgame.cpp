@@ -10,8 +10,6 @@
 
 MineStormGame::MineStormGame(const QSize &size, QObject *parent):Game(size, parent) {
     initialize();
-
-    Explosion expl(1, QPoint(100, 200));
 }
 
 void MineStormGame::generateMines(int small, int medium, int big) {
@@ -45,17 +43,23 @@ void MineStormGame::draw(QPainter &painter) {
     _score = _ship->getSpeed();
     _ship->draw(painter);
 
-    Life life;
-    life.drawAllLifes(painter,this->_nbLife);
+    drawLives(painter);
 
-    Explosion expl(1, QPoint(100, 200));
-    expl.draw(painter);
+    std::vector<Explosion>::iterator explIt = _explosions.begin();
+    while(explIt != _explosions.end()){
+        if (explIt->toRemove()){
+            explIt = _explosions.erase(explIt);
+        } else {
+            explIt->draw(painter);
+            ++explIt;
+        }
+    }
 
 
     std::vector<ShipBullet>::iterator it = _bullets.begin();
     while(it != _bullets.end()){
 
-        if(it->getAlive()<1){
+        if(it->isAlive()<1){
             it = _bullets.erase(it);
         } else {
             it->move(size());
@@ -78,6 +82,7 @@ void MineStormGame::draw(QPainter &painter) {
         if(!it2->getPolygon().intersected(_ship->getPolygonDetection()).isEmpty()){
             it2->explode();
             _ship->explode();
+
             this->looseLife();
             _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
         }
@@ -89,6 +94,10 @@ void MineStormGame::draw(QPainter &painter) {
                 it->explode();
                 it = _bullets.erase(it);
                 it2 = _mines.erase(it2);
+
+                Explosion expl(8, it2->getPosition());
+                _explosions.push_back(expl);
+
                 destroyed = true;
             }
             else{
@@ -106,17 +115,24 @@ void MineStormGame::initialize() {
     _bullets.clear();
     _mines.clear();
     _score = 0;
-    _nbLife = 4;
+    _livesLeft = 3;
     _upKeyDown = false;
     _leftKeyDown = false;
     _rightKeyDown = false;
     _downKeyDown = false;
     _spaceKeyDown =false;
-    generateMines(5,5,5);
+    generateMines(0,0,5);
 }
 
 QPoint MineStormGame::getRandomPoint() {
     return QPoint(rand()%size().width(),rand()%size().height());
+}
+
+void MineStormGame::drawLives(QPainter &painter) {
+    for(int i=0; i<_livesLeft; i++){
+        Life life(QPoint(size().width()-(20+i*15), size().height()-20));
+        life.draw(painter);
+    }
 }
 
 void MineStormGame::fire() {
@@ -177,12 +193,8 @@ void MineStormGame::keyReleased( int key ) {
     }
 }
 
-int MineStormGame::getNbLifes() const{
-    return this->_nbLife;
-}
-
 void MineStormGame::looseLife(){
-    this->_nbLife--;
+    this->_livesLeft--;
 }
 
 

@@ -10,7 +10,7 @@ void ShipBullet::draw(QPainter &painter) {
     //painter.drawPolygon(this->getPolygonDetection());
 }
 
-int ShipBullet::getAlive() {
+int ShipBullet::isAlive() {
     return this->alive;
 }
 

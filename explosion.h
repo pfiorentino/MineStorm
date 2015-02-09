@@ -11,8 +11,10 @@ public:
 
     void draw(QPainter &painter);
     QPolygon getPolygon();
+    bool toRemove() const;
 private:
-    int _size;
+    float _currentSize;
+    int _maxSize;
     QPoint _position;
     QPoint getAbsolutePoint(QPoint relativePoint) const;
 };

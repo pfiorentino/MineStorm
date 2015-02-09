@@ -1,7 +1,7 @@
 #include "explosion.h"
 
-Explosion::Explosion(int size, QPoint position):_size(size), _position(position) {
-
+Explosion::Explosion(int size, QPoint position):
+    _currentSize(0.0), _maxSize(size), _position(position) {
 }
 
 Explosion::~Explosion() {
@@ -9,6 +9,9 @@ Explosion::~Explosion() {
 }
 
 void Explosion::draw(QPainter &painter) {
+    if (_currentSize < (float) _maxSize)
+        _currentSize += 1.0;
+
     QPainterPath path;
     path.addPolygon(this->getPolygon());
     painter.drawPath(path);
@@ -18,31 +21,35 @@ QPolygon Explosion::getPolygon(){
     QPolygon explosion;
 
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(0, 16)));
+    explosion.append(getAbsolutePoint(QPoint(1, -8)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(6, 10)));
+    explosion.append(getAbsolutePoint(QPoint(3, -5)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(18, 6)));
+    explosion.append(getAbsolutePoint(QPoint(9, -3)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(12, 0)));
+    explosion.append(getAbsolutePoint(QPoint(6, 0)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(8, 4)));
+    explosion.append(getAbsolutePoint(QPoint(4, -2)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(6, -14)));
+    explosion.append(getAbsolutePoint(QPoint(3, 7)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(0, -12)));
+    explosion.append(getAbsolutePoint(QPoint(0, 6)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(-6, -8)));
+    explosion.append(getAbsolutePoint(QPoint(-3, 4)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(-16, 0)));
+    explosion.append(getAbsolutePoint(QPoint(-8, 0)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(-12, 8)));
+    explosion.append(getAbsolutePoint(QPoint(-6, -4)));
     explosion.append(getAbsolutePoint(QPoint(0, 0)));
-    explosion.append(getAbsolutePoint(QPoint(-2, 4)));
+    explosion.append(getAbsolutePoint(QPoint(-1, -2)));
 
     return explosion;
 }
 
 QPoint Explosion::getAbsolutePoint(QPoint relativePoint) const {
-    return QPoint(_position.x()+relativePoint.x(), _position.y()+relativePoint.y());
+    return QPoint(_position.x()+(relativePoint.x()*_currentSize), _position.y()+(relativePoint.y()*_currentSize));
+}
+
+bool Explosion::toRemove() const {
+    return _currentSize == (float) _maxSize;
 }

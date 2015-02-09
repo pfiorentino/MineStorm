@@ -6,13 +6,11 @@
 class Life
 {
 public:
-    Life();
-    void draw(QPainter &painter, QPoint position);
-    void drawAllLifes(QPainter &painter, int nbLife);
-    void looseLife();
+    Life(QPoint position);
+    void draw(QPainter &painter);
 
 private:
-    std::vector<QPoint> _listLife;
+    QPoint _position;
 };
 
 #endif // LIFE_H

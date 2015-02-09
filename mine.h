@@ -10,7 +10,6 @@ class Mine : public MovableObject
 public:
     Mine(int size, QPoint position, int speed, int direction);
 
-
     void draw(QPainter &painter);
     void spawn();
     void eclose();
