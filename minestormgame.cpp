@@ -13,7 +13,7 @@ MineStormGame::MineStormGame(QObject *parent):Game(parent) {
     initialize();
 }
 
-void MineStormGame::generateMine(int small, int medium, int big) {
+void MineStormGame::generateMines(int small, int medium, int big) {
 
     for (int i = 0; i<small; i++) {
         Mine mine(4, QPoint(rand()%400,rand()%600),rand()%5 +2,rand()%360);
@@ -100,12 +100,12 @@ void MineStormGame::initialize() {
     _rightKeyDown = false;
     _downKeyDown = false;
     _spaceKeyDown =false;
-    generateMine(5,5,5);
+    generateMines(5,5,5);
 }
 
 void MineStormGame::fire() {
     _bullets.push_back(ShipBullet(_ship->getPosition(),18, _ship->getOrientation()));
- //   std::cout<<"Fire ! "<<_bullets.size()<<std::endl;
+    std::cout<<"Fire ! "<<_bullets.size()<<std::endl;
 
 }
 
@@ -123,8 +123,8 @@ void MineStormGame::keyPressed( int key ) {
         case Qt::Key_Down:
             _downKeyDown = true;
             break;
-        case Qt::Key_Space || Qt::Key_Control:
-            _spaceKeyDown =true;
+        case Qt::Key_Space:
+            _spaceKeyDown = true;
             break;
         case Qt::Key_Return:
             if (this->isRunning())
@@ -154,7 +154,7 @@ void MineStormGame::keyReleased( int key ) {
             _downKeyDown = false;
             _ship->stop();
         break;
-        case Qt::Key_Space || Qt::Key_Control:
+        case Qt::Key_Space:
             _spaceKeyDown = false;
         break;
 

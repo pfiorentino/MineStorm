@@ -14,7 +14,7 @@ public:
     virtual void draw(QPainter &painter);
     void keyPressed( int key );
     void keyReleased( int key );
-    void generateMine(int small, int medium, int big);
+    void generateMines(int small, int medium, int big);
 private:
     void initialize();
     SpaceShip *_ship;
