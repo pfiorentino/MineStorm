@@ -5,6 +5,9 @@
 #include <QPalette>
 
 MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
+    this->setMaximumSize(game->size());
+    this->setMinimumSize(game->size());
+
     auto window = new QWidget(this);
     window->setAutoFillBackground(true);
     window->setFixedSize(game->size());
@@ -14,7 +17,7 @@ MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
     window->setPalette(pal);
 
     auto gameboard = new GameBoard(game, window);
-    gameboard->setSizePolicy(QSizePolicy::Expanding , QSizePolicy::Expanding);
+    gameboard->setSizePolicy(QSizePolicy::Fixed , QSizePolicy::Fixed);
 
     setCentralWidget(window);
     show();

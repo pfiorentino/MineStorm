@@ -4,6 +4,7 @@
 #include <QFontDatabase>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QStatusBar>
 
 int main(int argc, char *argv[])
 {
