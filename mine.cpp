@@ -5,6 +5,7 @@
 
 Mine::Mine(int size, QPoint position, int speed, int direction):MovableObject(position, speed, direction), _size(size) {
     this->_born=false;
+    alive = rand()%120 +5;
 }
 
 void Mine::draw(QPainter &painter) {
@@ -19,8 +20,12 @@ void Mine::spawn(){
 }
 
 void Mine::move(QSize bounds){
-    if(!_born) {
 
+    if (alive>1) {
+        alive--;
+    }
+    else if(!_born) {
+        _born=true;
     }
     else {
         MovableObject::move(bounds);
