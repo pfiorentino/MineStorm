@@ -54,10 +54,6 @@ QPoint SpaceShip::getAbsolutePoint(QPoint relativePoint) const {
                   cos(_orientation*M_PI/180)*(absolutePoint.x()-_position.x()) + sin(_orientation*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.y());
 }
 
-void SpaceShip::explode(){
-    //std::cout<<"Le vaisseau explose !"<<std::endl;
-}
-
 QPolygon SpaceShip::getPolygon(){
     QPolygon ship;
 
