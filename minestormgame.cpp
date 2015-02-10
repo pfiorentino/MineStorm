@@ -70,29 +70,31 @@ void MineStormGame::draw(QPainter &painter) {
         it2->move(size());
         it2->draw(painter);
         it = _bullets.begin();
-
+        destroyed = false;
         if(!it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()){
             it2->explode();
             _ship->explode();
 
             this->looseLife();
             _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
+            destroyed = true;
+            it2 = _mines.erase(it2);
         }
-        destroyed = false;
+        if(!destroyed){
+            while(it != _bullets.end()){
+                if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
+                    Explosion expl(8, it2->getPosition());
+                    _explosions.push_back(expl);
 
-        while(it != _bullets.end()){
-            if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
-                Explosion expl(8, it2->getPosition());
-                _explosions.push_back(expl);
+                    it2->explode();
+                    it->explode();
+                    it = _bullets.erase(it);
+                    it2 = _mines.erase(it2);
 
-                it2->explode();
-                it->explode();
-                it = _bullets.erase(it);
-                it2 = _mines.erase(it2);
-
-                destroyed = true;
-            } else{
-                ++it;
+                    destroyed = true;
+                } else{
+                    ++it;
+                }
             }
         }
         if(!destroyed){
