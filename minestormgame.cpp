@@ -79,7 +79,7 @@ void MineStormGame::draw(QPainter &painter) {
         if(!it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()){
             Explosion shipExpl(8, _ship->getPosition());
             _explosions.push_back(shipExpl);
-            Explosion mineExpl(8, it2->getPosition());
+            Explosion mineExpl(8-it2->getSize(), it2->getPosition());
             _explosions.push_back(mineExpl);
 
             this->looseLife();
