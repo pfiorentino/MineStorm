@@ -90,7 +90,7 @@ void MineStormGame::draw(QPainter &painter) {
         if(!destroyed){
             while(it != _bullets.end()){
                 if(!(it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()) && it2->isBorn() ){
-                    Explosion expl(8, it2->getPosition());
+                    Explosion expl(8-it2->getSize(), it2->getPosition());
                     _explosions.push_back(expl);
 
                     it2->explode();
