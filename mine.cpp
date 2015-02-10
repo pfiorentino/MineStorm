@@ -19,21 +19,13 @@ void Mine::spawn(){
 
 }
 
-void Mine::move(QSize bounds){
-
+void Mine::eclose() {
     if (alive>1) {
         alive--;
     }
     else if(!_born) {
         _born=true;
     }
-    else {
-        MovableObject::move(bounds);
-    }
-}
-
-void Mine::eclose(){
-
 }
 
 void Mine::explode(){
@@ -53,7 +45,7 @@ QPolygon Mine::getPolygon(){
     return mine;
 }
 
-bool Mine::getBorn() {
+bool Mine::isBorn() {
     return _born;
 }
 

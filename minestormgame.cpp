@@ -67,7 +67,12 @@ void MineStormGame::draw(QPainter &painter) {
     std::vector<Mine>::iterator it2 = _mines.begin();
     bool destroyed = false;
     while(it2 != _mines.end()){
-        it2->move(size());
+        if (it2->isBorn()) {
+            it2->move(size());
+        }
+        else {
+            it2->eclose();
+        }
         it2->draw(painter);
         it = _bullets.begin();
         destroyed = false;

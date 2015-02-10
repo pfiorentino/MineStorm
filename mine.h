@@ -12,12 +12,11 @@ public:
 
     void draw(QPainter &painter);
     void spawn();
-    void eclose();
     void explode();
-    void move(QSize bounds);
     QPolygon getPolygon();
-    bool getBorn();
+    bool isBorn();
     void setBorn(bool born);
+    void eclose();
 
 
 private:
