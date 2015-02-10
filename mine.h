@@ -17,6 +17,7 @@ public:
     bool isBorn();
     void setBorn(bool born);
     void eclose();
+    int getSize();
 
 
 private:

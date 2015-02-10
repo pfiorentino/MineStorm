@@ -52,3 +52,7 @@ bool Mine::isBorn() {
 void Mine::setBorn(bool born) {
     _born=born;
 }
+
+int Mine::getSize() {
+    return _size;
+}
