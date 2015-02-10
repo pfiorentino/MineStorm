@@ -14,7 +14,7 @@ MineStormGame::MineStormGame(const QSize &size, QObject *parent):Game(size, pare
 
 void MineStormGame::generateMines(int small, int medium, int big) {
     for (int i = 0; i<small; i++) {
-        Mine mine(4, getRandomPoint(),rand()%5 +2,rand()%360);
+        Mine mine(3, getRandomPoint(),rand()%5 +2,rand()%360);
         _mines.push_back(mine);
     }
     for (int i = 0; i<medium; i++) {
@@ -66,12 +66,7 @@ void MineStormGame::draw(QPainter &painter) {
 
     std::vector<Mine>::iterator it2 = _mines.begin();
     bool destroyed = false;
-    bool needEclosion = true;
     while(it2 != _mines.end()){
-        if (it2->getBorn() == false && needEclosion) {
-            it2->setBorn(true);
-            needEclosion = false;
-        }
         it2->move(size());
         it2->draw(painter);
         it = _bullets.begin();
@@ -117,7 +112,7 @@ void MineStormGame::initialize() {
     _rightKeyDown = false;
     _downKeyDown = false;
     _spaceKeyDown =false;
-    generateMines(0,0,5);
+    generateMines(5,5,5);
 }
 
 QPoint MineStormGame::getRandomPoint() {
