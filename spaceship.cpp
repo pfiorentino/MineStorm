@@ -5,12 +5,19 @@ SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
     _orientation = orientation;
     _acceleration = 0;
     _maxspeed = 12;
+    this->_godModeDuration= 72;
 }
 
 void SpaceShip::draw(QPainter &painter) {
     QPainterPath path;
     path.addPolygon(this->getPolygon());
-    painter.drawPath(path);
+
+    if(this->_godModeDuration%12 < 8)
+        painter.drawPath(path);
+
+    if(this->isInvincible()){
+        this->_godModeDuration--;
+    }
 }
 
 void SpaceShip::rotateLeft(){
@@ -78,6 +85,14 @@ QPolygon SpaceShip::getPolygon(){
     ship.append(getAbsolutePoint(QPoint(0, 10)));
 
     return ship;
+}
+
+bool SpaceShip::isInvincible(){
+    return this-> _godModeDuration >= 0;
+}
+
+void SpaceShip::resetGodMode(){
+    this->_godModeDuration = 72;
 }
 
 
