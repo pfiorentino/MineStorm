@@ -76,7 +76,7 @@ void MineStormGame::draw(QPainter &painter) {
         it2->draw(painter);
         it = _bullets.begin();
         destroyed = false;
-        if(!it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()){
+        if(!(it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()) && it2->isBorn()){
             Explosion shipExpl(8, _ship->getPosition());
             _explosions.push_back(shipExpl);
             Explosion mineExpl(8-it2->getSize(), it2->getPosition());
@@ -89,8 +89,8 @@ void MineStormGame::draw(QPainter &painter) {
         }
         if(!destroyed){
             while(it != _bullets.end()){
-                if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
-                    Explosion expl(8-it2->getSize(), it2->getPosition());
+                if(!(it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()) && it2->isBorn() ){
+                    Explosion expl(8, it2->getPosition());
                     _explosions.push_back(expl);
 
                     it2->explode();
