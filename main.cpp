@@ -8,9 +8,10 @@
 
 int main(int argc, char *argv[])
 {
-    QFontDatabase::addApplicationFont(":/fonts/PressStart2P.ttf");
-
     QApplication a(argc, argv);
+
+    QFontDatabase fontDb;
+    fontDb.addApplicationFont(":/fonts/vcr_osd_mono.ttf");
 
     MineStormGame game(QSize(700, 700));
     MainWindow mainWindow(&game);

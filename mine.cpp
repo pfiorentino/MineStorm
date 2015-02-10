@@ -3,9 +3,9 @@
 #include <QPolygon>
 
 
-Mine::Mine(int size, QPoint position, int speed, int direction):MovableObject(position, speed, direction), _size(size) {
-    this->_born=false;
-    alive = rand()%120 +5;
+Mine::Mine(int size, QPoint position, int speed, int direction):
+    MovableObject(position, speed, direction), _size(size), _born(false) {
+    _eclosionTime = rand()%500+5;
 }
 
 void Mine::draw(QPainter &painter) {
@@ -20,16 +20,11 @@ void Mine::spawn(){
 }
 
 void Mine::eclose() {
-    if (alive>1) {
-        alive--;
+    if (_eclosionTime > 0) {
+        _eclosionTime--;
+    } else if (!_born) {
+        _born = true;
     }
-    else if(!_born) {
-        _born=true;
-    }
-}
-
-void Mine::explode(){
-    //std::cout<<"La mine explose !"<<std::endl;
 }
 
 QPolygon Mine::getPolygon(){
@@ -50,7 +45,7 @@ bool Mine::isBorn() {
 }
 
 void Mine::setBorn(bool born) {
-    _born=born;
+    _born = born;
 }
 
 int Mine::getSize() {

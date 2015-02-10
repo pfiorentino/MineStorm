@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fonts/vcr_osd_mono.ttf</file>
+    </qresource>
+</RCC>

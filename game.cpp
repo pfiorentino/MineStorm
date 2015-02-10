@@ -10,7 +10,7 @@ const QSize &Game::size() const {
 }
 
 void Game::start() {
-    _timer.start(40); // 40ms = 25fps
+    _timer.start(25); // 25ms = 40fps
 
     _isRunning = true;
     _started = true;

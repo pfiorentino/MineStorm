@@ -39,5 +39,7 @@ HEADERS  += mainwindow.h \
     shipbullet.h \
     explosion.h
 
+RESOURCES = ressources.qrc
+
 FORMS    +=
 

@@ -8,8 +8,7 @@
 #include "mine.h"
 #include "explosion.h"
 
-class MineStormGame : public Game
-{
+class MineStormGame : public Game {
     Q_OBJECT
 public:
     MineStormGame(const QSize &size, QObject *parent = nullptr);
@@ -21,6 +20,7 @@ public:
 
 private:
     void initialize();
+    void repop();
     QPoint getRandomPoint();
     void drawLives(QPainter &painter);
 
@@ -36,6 +36,10 @@ private:
     bool _upKeyDown;
     bool _downKeyDown; //Touche de test, à enlever dans la version finale
     bool _spaceKeyDown;
+
+    int _fireCounter;
+    int _accelerationFactor;
+    int _repopCounter;
 };
 
 #endif // MINESTORMGAME_H

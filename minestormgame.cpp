@@ -28,12 +28,20 @@ void MineStormGame::generateMines(int small, int medium, int big) {
 }
 
 void MineStormGame::draw(QPainter &painter) {
+    --_repopCounter;
+    if (_repopCounter == 0)
+        repop();
+
     if (_leftKeyDown)
         _ship->rotateLeft();
     if (_rightKeyDown)
         _ship->rotateRight();
-    if (_upKeyDown)
-        _ship->accelerate();
+    if (_upKeyDown) {
+        _accelerationFactor++;
+
+        if (_accelerationFactor%2 == 0)
+            _ship->accelerate();
+    }
 
     if (_spaceKeyDown)
         fire();
@@ -77,9 +85,9 @@ void MineStormGame::draw(QPainter &painter) {
         it = _bullets.begin();
         destroyed = false;
         if(!(it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()) && it2->isBorn() && !(_ship->isInvincible())){
-            Explosion shipExpl(8, _ship->getPosition());
+            Explosion shipExpl(15, _ship->getPosition());
             _explosions.push_back(shipExpl);
-            Explosion mineExpl(8-it2->getSize(), it2->getPosition());
+            Explosion mineExpl(15/it2->getSize(), it2->getPosition());
             _explosions.push_back(mineExpl);
             _score +=10;
             this->looseLife();
@@ -90,11 +98,9 @@ void MineStormGame::draw(QPainter &painter) {
         if(!destroyed){
             while(it != _bullets.end()){
                 if(!(it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()) && it2->isBorn() ){
-                    Explosion expl(8-it2->getSize(), it2->getPosition());
+                    Explosion expl(15/it2->getSize(), it2->getPosition());
                     _explosions.push_back(expl);
                     _score +=10;
-                    it2->explode();
-                    it->explode();
                     it = _bullets.erase(it);
                     it2 = _mines.erase(it2);
 
@@ -114,14 +120,24 @@ void MineStormGame::initialize() {
     _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
     _bullets.clear();
     _mines.clear();
+    _explosions.clear();
+
     _score = 0;
     _livesLeft = 3;
+    _fireCounter = 0;
+    _accelerationFactor = 0;
+    _repopCounter = 1200;
     _upKeyDown = false;
     _leftKeyDown = false;
     _rightKeyDown = false;
     _downKeyDown = false;
     _spaceKeyDown =false;
     generateMines(5,20,5);
+}
+
+void MineStormGame::repop() {
+    generateMines(1,3,1);
+    _repopCounter = 1200;
 }
 
 QPoint MineStormGame::getRandomPoint() {
@@ -136,7 +152,11 @@ void MineStormGame::drawLives(QPainter &painter) {
 }
 
 void MineStormGame::fire() {
-    _bullets.push_back(ShipBullet(_ship->getPosition(),18, _ship->getOrientation()));
+    if (_fireCounter%10 == 0){
+        _bullets.push_back(ShipBullet(_ship->getPosition(),18, _ship->getOrientation()));
+    }
+
+    ++_fireCounter;
 }
 
 void MineStormGame::keyPressed( int key ) {
@@ -178,8 +198,9 @@ void MineStormGame::keyReleased( int key ) {
             _rightKeyDown = false;
             break;
         case Qt::Key_Up:
-            _upKeyDown = false;
+            _accelerationFactor = 0;
             _ship->stopAcceleration();
+            _upKeyDown = false;
             break;
         case Qt::Key_Down:
             _downKeyDown = false;
@@ -187,6 +208,7 @@ void MineStormGame::keyReleased( int key ) {
         break;
         case Qt::Key_Space:
         case Qt::Key_Control:
+            _fireCounter = 0;
             _spaceKeyDown = false;
         break;
 

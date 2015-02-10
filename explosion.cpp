@@ -1,7 +1,7 @@
 #include "explosion.h"
 
 Explosion::Explosion(int size, QPoint position):
-    _currentSize(0.0), _maxSize(size), _position(position) {
+    _currentSize(1), _maxSize(size), _position(position) {
 }
 
 Explosion::~Explosion() {
@@ -9,8 +9,8 @@ Explosion::~Explosion() {
 }
 
 void Explosion::draw(QPainter &painter) {
-    if (_currentSize < (float) _maxSize)
-        _currentSize += 1.0;
+    if (_currentSize < _maxSize)
+        ++_currentSize;
 
     QPainterPath path;
     path.addPolygon(this->getPolygon());
@@ -51,5 +51,5 @@ QPoint Explosion::getAbsolutePoint(QPoint relativePoint) const {
 }
 
 bool Explosion::toRemove() const {
-    return _currentSize == (float) _maxSize;
+    return _currentSize == _maxSize;
 }

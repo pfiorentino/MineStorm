@@ -13,7 +13,7 @@ public:
     QPolygon getPolygon();
     bool toRemove() const;
 private:
-    float _currentSize;
+    int _currentSize;
     int _maxSize;
     QPoint _position;
     QPoint getAbsolutePoint(QPoint relativePoint) const;

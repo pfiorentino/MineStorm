@@ -5,14 +5,12 @@
 #include <QPolygon>
 #include "movableobject.h"
 
-class Mine : public MovableObject
-{
+class Mine : public MovableObject {
 public:
     Mine(int size, QPoint position, int speed, int direction);
 
     void draw(QPainter &painter);
     void spawn();
-    void explode();
     QPolygon getPolygon();
     bool isBorn();
     void setBorn(bool born);
@@ -23,6 +21,7 @@ public:
 private:
     int _size;
     bool _born;
+    int _eclosionTime;
 };
 
 #endif // MINE_H

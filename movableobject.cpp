@@ -43,6 +43,4 @@ void MovableObject::move(QSize bounds) {
     else if (_position.y() > bounds.height()) {
         _position.setY(_position.y()-bounds.height());
     }
-
-    this->alive--;
 }

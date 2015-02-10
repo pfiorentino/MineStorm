@@ -8,9 +8,9 @@ public:
     ShipBullet(QPoint position, int speed, int orientation);
     void draw(QPainter &painter);
     bool isAlive();
-    void explode();
-    QPolygon getPolygon();
     QPolygon getPolygonDetection();
+private:
+    int _lifeTime;
 };
 
 #endif // SHIPBULLET_H

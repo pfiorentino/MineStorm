@@ -4,7 +4,7 @@
 SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
     _orientation = orientation;
     _acceleration = 0;
-    _maxspeed = 12;
+    _maxspeed = 8;
     this->_godModeDuration= 72;
 }
 
