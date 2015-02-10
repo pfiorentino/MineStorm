@@ -21,7 +21,6 @@ public:
     int getDirection();
 
     void move(QSize bounds);
-    void explode();
 
     QPolygon getPolygon();
     QPolygon getPolygonDetection();

@@ -69,16 +69,18 @@ void MineStormGame::draw(QPainter &painter) {
     while(it2 != _mines.end()){
         if (it2->isBorn()) {
             it2->move(size());
-        }
-        else {
+        } else {
             it2->eclose();
         }
+
         it2->draw(painter);
         it = _bullets.begin();
         destroyed = false;
         if(!it2->getPolygon().intersected(_ship->getPolygon()).isEmpty()){
-            it2->explode();
-            _ship->explode();
+            Explosion shipExpl(8, _ship->getPosition());
+            _explosions.push_back(shipExpl);
+            Explosion mineExpl(8, it2->getPosition());
+            _explosions.push_back(mineExpl);
 
             this->looseLife();
             _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));

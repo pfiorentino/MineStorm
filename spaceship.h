@@ -15,7 +15,6 @@ public:
     void stopAcceleration();
     int getOrientation();
     void stop();
-    void explode();
     QPolygon getPolygon();
 
 private:
