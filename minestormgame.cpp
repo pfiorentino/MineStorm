@@ -9,11 +9,20 @@
 #include <random>
 
 MineStormGame::MineStormGame(const QSize &size, QObject *parent):Game(size, parent) {
+    connect(this,SIGNAL(keyboardChanged()),this,SLOT(keyboardUpdate()));
+
     initialize();
 }
 
-void MineStormGame::generateMines(int small, int medium, int big) {
+void MineStormGame::keyboardUpdate() {
+    if (_upKeyDown)
+        _ship->accelerate();
 
+    if (_spaceKeyDown)
+        fire();
+}
+
+void MineStormGame::generateMines(int small, int medium, int big) {
     for (int i = 0; i<small; i++) {
         Mine mine(4, getRandomPoint(),rand()%5 +2,rand()%360);
         _mines.push_back(mine);
@@ -29,21 +38,15 @@ void MineStormGame::generateMines(int small, int medium, int big) {
 }
 
 void MineStormGame::draw(QPainter &painter) {
-    _ship->move(size());
-
-    if (_upKeyDown)
-        _ship->accelerate();
     if (_leftKeyDown)
         _ship->rotateLeft();
     if (_rightKeyDown)
         _ship->rotateRight();
-    if (_spaceKeyDown)
-        fire();
-
-    _score = _ship->getSpeed();
-    _ship->draw(painter);
 
     drawLives(painter);
+
+    _ship->move(size());
+    _ship->draw(painter);
 
     std::vector<Explosion>::iterator explIt = _explosions.begin();
     while(explIt != _explosions.end()){
@@ -55,7 +58,6 @@ void MineStormGame::draw(QPainter &painter) {
         }
     }
 
-
     std::vector<ShipBullet>::iterator it = _bullets.begin();
     while(it != _bullets.end()){
         if(it->isAlive()){
@@ -66,8 +68,6 @@ void MineStormGame::draw(QPainter &painter) {
             it = _bullets.erase(it);
         }
     }
-
-    _score = _mines.size();
 
     std::vector<Mine>::iterator it2 = _mines.begin();
     bool destroyed = false;
@@ -92,18 +92,17 @@ void MineStormGame::draw(QPainter &painter) {
 
         while(it != _bullets.end()){
             if(!it2->getPolygon().intersected(it->getPolygonDetection()).isEmpty()){
+                Explosion expl(8, it2->getPosition());
+                _explosions.push_back(expl);
+
                 it2->explode();
                 it->explode();
                 it = _bullets.erase(it);
                 it2 = _mines.erase(it2);
 
-                Explosion expl(8, it2->getPosition());
-                _explosions.push_back(expl);
-
                 destroyed = true;
-            }
-            else{
-            ++it;
+            } else{
+                ++it;
             }
         }
         if(!destroyed){

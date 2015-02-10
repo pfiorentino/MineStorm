@@ -2,7 +2,10 @@
 
 Game::Game(const QSize &size, QObject *parent):QObject(parent), _size(size), _isRunning(false){
     _timer.setSingleShot(false);
+    _keyboardTimer.setSingleShot(false);
+
     connect(&_timer,SIGNAL(timeout()),this,SLOT(update()));
+    connect(&_keyboardTimer,SIGNAL(timeout()),this,SLOT(keyboardUpdate()));
 }
 
 const QSize &Game::size() const {
@@ -10,13 +13,17 @@ const QSize &Game::size() const {
 }
 
 void Game::start() {
-    _timer.start(30);
+    _timer.start(40); // 40ms = 25fps
+    _keyboardTimer.start(250); // 250ms = 4fps
+
     _isRunning = true;
     _started = true;
 }
 
 void Game::pause(){
     _timer.stop();
+    _keyboardTimer.stop();
+
     _isRunning = false;
 }
 
@@ -29,6 +36,10 @@ void Game::reset(){
 
 void Game::update() {
     emit changed();
+}
+
+void Game::keyboardUpdate() {
+    emit keyboardChanged();
 }
 
 bool Game::isRunning() const {

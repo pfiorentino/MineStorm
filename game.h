@@ -82,13 +82,16 @@ protected:
 
 signals:
     void changed();
+    void keyboardChanged();
 
 private slots:
     void update();
+    void keyboardUpdate();
 
 private:
     QSize _size;
     QTimer _timer;
+    QTimer _keyboardTimer;
     bool _started;
     bool _isRunning;
 };

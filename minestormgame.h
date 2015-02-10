@@ -18,6 +18,10 @@ public:
     void keyReleased( int key );
     void generateMines(int small, int medium, int big);
     void looseLife();
+
+private slots:
+    void keyboardUpdate();
+
 private:
     void initialize();
     QPoint getRandomPoint();
