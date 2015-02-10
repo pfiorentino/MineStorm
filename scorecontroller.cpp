@@ -13,7 +13,7 @@ ScoreController::ScoreController(Game *game, QWidget *parent) : QWidget(parent),
     _scoreLabel->setContentsMargins(10, 10, 10, 10);
     _scoreLabel->setStyleSheet("QLabel { color : rgb(220, 220, 220); }");
     _scoreLabel->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
-    _scoreLabel->setFont(QFont("VCR OSD Mono", 25));
+    _scoreLabel->setFont(QFont("Press Start 2P", 17));
     _scoreLabel->resize(140, 40);
 }
 

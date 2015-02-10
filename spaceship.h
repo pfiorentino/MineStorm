@@ -15,7 +15,7 @@ public:
     void stopAcceleration();
     int getOrientation();
     void stop();
-    QPolygon getPolygon();
+    QPolygon getPolygon() const;
     bool isInvincible();
     void resetGodMode();
 private:

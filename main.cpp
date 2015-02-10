@@ -11,9 +11,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QFontDatabase fontDb;
-    fontDb.addApplicationFont(":/fonts/vcr_osd_mono.ttf");
+    fontDb.addApplicationFont(":/fonts/PressStart2P.ttf");
 
-    MineStormGame game(QSize(700, 700));
+    MineStormGame game(QSize(600, 700));
     MainWindow mainWindow(&game);
 
     // Permet de centrer la fenêtre principale à l'écran

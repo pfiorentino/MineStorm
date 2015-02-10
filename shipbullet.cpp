@@ -14,7 +14,7 @@ bool ShipBullet::isAlive() {
     return _lifeTime > 0;
 }
 
-QPolygon ShipBullet::getPolygonDetection(){
+QPolygon ShipBullet::getPolygon() const{
     QPolygon bullet;
     int carretSize = 3;
 

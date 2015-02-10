@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>fonts/vcr_osd_mono.ttf</file>
+        <file>fonts/PressStart2P.ttf</file>
     </qresource>
 </RCC>

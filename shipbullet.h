@@ -8,7 +8,7 @@ public:
     ShipBullet(QPoint position, int speed, int orientation);
     void draw(QPainter &painter);
     bool isAlive();
-    QPolygon getPolygonDetection();
+    QPolygon getPolygon() const;
 private:
     int _lifeTime;
 };

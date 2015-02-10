@@ -22,7 +22,9 @@ public:
 
     void move(QSize bounds);
 
-    QPolygon getPolygon();
+    virtual bool inContact(MovableObject const &object) const;
+
+    virtual QPolygon getPolygon() const = 0;
     QPolygon getPolygonDetection();
 
 protected:

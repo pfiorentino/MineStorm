@@ -21,16 +21,19 @@ public:
 private:
     void initialize();
     void repop();
-    QPoint getRandomPoint();
-    void drawLives(QPainter &painter);
+    void fire();
+
+    QPoint getRandomPoint() const;
+    void drawLives(QPainter &painter) const;
 
     SpaceShip *_ship;
+
     std::vector<ShipBullet> _bullets;
     std::vector<Mine> _mines;
     std::vector<Explosion> _explosions;
+
     int _livesLeft;
 
-    void fire();
     bool _leftKeyDown;
     bool _rightKeyDown;
     bool _upKeyDown;

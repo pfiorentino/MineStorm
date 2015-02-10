@@ -61,7 +61,7 @@ QPoint SpaceShip::getAbsolutePoint(QPoint relativePoint) const {
                   cos(_orientation*M_PI/180)*(absolutePoint.x()-_position.x()) + sin(_orientation*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.y());
 }
 
-QPolygon SpaceShip::getPolygon(){
+QPolygon SpaceShip::getPolygon() const{
     QPolygon ship;
 
 //    ship.append(getAbsolutePoint(QPoint(-10, 0)));

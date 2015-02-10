@@ -44,3 +44,7 @@ void MovableObject::move(QSize bounds) {
         _position.setY(_position.y()-bounds.height());
     }
 }
+
+bool MovableObject::inContact(MovableObject const &object) const{
+    return !(getPolygon().intersected(object.getPolygon()).isEmpty());
+}
