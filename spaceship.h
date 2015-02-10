@@ -16,12 +16,14 @@ public:
     int getOrientation();
     void stop();
     QPolygon getPolygon();
-
+    bool isInvincible();
+    void resetGodMode();
 private:
     QPoint getAbsolutePoint(QPoint relativePoint) const;
     int _orientation;
     int _acceleration;
     int _maxspeed;
+    int _godModeDuration;
 };
 
 #endif // SPACESHIP_H
