@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    MineStormGame game(QSize(500, 700));
+    MineStormGame game(QSize(700, 700));
     MainWindow mainWindow(&game);
 
     // Permet de centrer la fenêtre principale à l'écran

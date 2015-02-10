@@ -27,11 +27,12 @@ QPolygon ShipBullet::getPolygon(){
 
 QPolygon ShipBullet::getPolygonDetection(){
     QPolygon bullet;
+    int carretSize = 3;
 
-    bullet.append(QPoint(_position.x()+1, _position.y()+1));
-    bullet.append(QPoint(_position.x()+1, _position.y()-1));
-    bullet.append(QPoint(_position.x()-1, _position.y()-1));
-    bullet.append(QPoint(_position.x()-1, _position.y()+1));
+    bullet.append(QPoint(_position.x()+carretSize, _position.y()+carretSize));
+    bullet.append(QPoint(_position.x()+carretSize, _position.y()-carretSize));
+    bullet.append(QPoint(_position.x()-carretSize, _position.y()-carretSize));
+    bullet.append(QPoint(_position.x()-carretSize, _position.y()+carretSize));
 
     return bullet;
 }
