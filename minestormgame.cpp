@@ -9,17 +9,7 @@
 #include <random>
 
 MineStormGame::MineStormGame(const QSize &size, QObject *parent):Game(size, parent) {
-    connect(this,SIGNAL(keyboardChanged()),this,SLOT(keyboardUpdate()));
-
     initialize();
-}
-
-void MineStormGame::keyboardUpdate() {
-    if (_upKeyDown)
-        _ship->accelerate();
-
-    if (_spaceKeyDown)
-        fire();
 }
 
 void MineStormGame::generateMines(int small, int medium, int big) {
@@ -42,6 +32,11 @@ void MineStormGame::draw(QPainter &painter) {
         _ship->rotateLeft();
     if (_rightKeyDown)
         _ship->rotateRight();
+    if (_upKeyDown)
+        _ship->accelerate();
+
+    if (_spaceKeyDown)
+        fire();
 
     drawLives(painter);
 
