@@ -14,7 +14,7 @@ ScoreController::ScoreController(Game *game, QWidget *parent) : QWidget(parent),
     _scoreLabel->setStyleSheet("QLabel { color : rgb(220, 220, 220); }");
     _scoreLabel->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     _scoreLabel->setFont(QFont("Press Start 2P", 17));
-    _scoreLabel->resize(140, 40);
+    _scoreLabel->resize(200, 40);
 }
 
 void ScoreController::refresh() {
