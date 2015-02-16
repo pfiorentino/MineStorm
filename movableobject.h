@@ -25,7 +25,6 @@ public:
     virtual bool inContact(MovableObject const &object) const;
 
     virtual QPolygon getPolygon() const = 0;
-    QPolygon getPolygonDetection();
 
 protected:
     QPoint _position;

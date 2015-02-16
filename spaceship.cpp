@@ -5,7 +5,7 @@ SpaceShip::SpaceShip(QPoint position, int orientation):MovableObject(position) {
     _orientation = orientation;
     _acceleration = 0;
     _maxspeed = 8;
-    this->_godModeDuration= 72;
+    this->_godModeDuration= 80;
 }
 
 void SpaceShip::draw(QPainter &painter) {
