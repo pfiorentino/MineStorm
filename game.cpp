@@ -1,6 +1,7 @@
 #include "game.h"
 
-Game::Game(const QSize &size, QObject *parent):QObject(parent), _size(size), _isRunning(false){
+Game::Game(const QSize &size, QObject *parent)
+    :QObject(parent), _gameOver(false), _size(size), _started(false), _isRunning(false){
     _timer.setSingleShot(false);
     connect(&_timer,SIGNAL(timeout()),this,SLOT(update()));
 }
@@ -18,8 +19,8 @@ void Game::start() {
 
 void Game::pause(){
     _timer.stop();
-
     _isRunning = false;
+    emit changed();
 }
 
 void Game::reset(){
@@ -39,6 +40,10 @@ bool Game::isRunning() const {
 
 bool Game::started() const {
     return _started;
+}
+
+bool Game::isOver() const {
+    return _gameOver;
 }
 
 int Game::getScore() const {

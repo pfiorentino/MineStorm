@@ -29,7 +29,6 @@ protected:
 private:
     QPen _pen;
     Game *_game;
-    QLabel *_startLabel;
     ScoreController *_scoreController;
 };
 

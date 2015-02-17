@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "gameboard.h"
+#include "overlaytext.h"
 #include "game.h"
 
 #include <QPalette>
@@ -18,6 +19,9 @@ MainWindow::MainWindow(Game *game, QWidget *parent) : QMainWindow(parent) {
 
     auto gameboard = new GameBoard(game, window);
     gameboard->setSizePolicy(QSizePolicy::Fixed , QSizePolicy::Fixed);
+
+    auto overlayText = new OverlayText(game, window);
+    overlayText->setSizePolicy(QSizePolicy::Fixed , QSizePolicy::Fixed);
 
     setCentralWidget(window);
     show();

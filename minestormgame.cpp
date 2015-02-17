@@ -43,7 +43,7 @@ void MineStormGame::draw(QPainter &painter) {
             _ship->accelerate();
     }
 
-    if (_spaceKeyDown)
+    if (_spaceKeyDown && !_gameOver)
         fire();
 
     std::vector<Mine>::iterator mine;
@@ -78,7 +78,7 @@ void MineStormGame::draw(QPainter &painter) {
 
     mine = _mines.begin();
     while(mine != _mines.end()){
-        if (mine->isBorn() && mine->inContact(*_ship) && !_ship->isInvincible()){
+        if (mine->isBorn() && mine->inContact(*_ship) && !_ship->isInvincible() && !_gameOver){
             _explosions.push_back(Explosion(15, _ship->getPosition()));
             _explosions.push_back(Explosion(15/mine->getSize(), mine->getPosition()));
 
@@ -97,8 +97,10 @@ void MineStormGame::draw(QPainter &painter) {
 
     drawLives(painter);
 
-    _ship->move(size());
-    _ship->draw(painter);
+    if (!_gameOver) {
+        _ship->move(size());
+        _ship->draw(painter);
+    }
 
     std::vector<Explosion>::iterator explosion = _explosions.begin();
     while(explosion != _explosions.end()){
@@ -112,6 +114,8 @@ void MineStormGame::draw(QPainter &painter) {
 }
 
 void MineStormGame::initialize() {
+    _gameOver = false;
+
     _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
 
     _bullets.clear();
@@ -177,10 +181,13 @@ void MineStormGame::keyPressed( int key ) {
             _spaceKeyDown = true;
             break;
         case Qt::Key_Return:
-            if (this->isRunning())
+            if (_gameOver){
+                initialize();
+            } else if (this->isRunning()) {
                 this->pause();
-            else
+            } else {
                 this->start();
+            }
             break;
         case Qt::Key_Escape:
             Game::reset();
@@ -215,8 +222,12 @@ void MineStormGame::keyReleased( int key ) {
 }
 
 void MineStormGame::looseLife(){
-    this->_livesLeft--;
-    _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
+    if (_livesLeft <= 0){
+        _gameOver = true;
+    } else {
+        this->_livesLeft--;
+        _ship = new SpaceShip(QPoint(size().width()/2, size().height()/2));
+    }
 }
 
 

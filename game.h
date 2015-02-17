@@ -73,12 +73,15 @@ public:
     bool isRunning() const;
 
     bool started() const;
+
+    bool isOver() const;
 protected:
     /**
      * @brief initialize initialise ou réinitialise le jeu
      */
     virtual void initialize() = 0;
     int _score;
+    bool _gameOver;
 
 signals:
     void changed();

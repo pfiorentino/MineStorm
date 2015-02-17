@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     scorecontroller.cpp \
     movableobject.cpp \
     shipbullet.cpp \
-    explosion.cpp
+    explosion.cpp \
+    overlaytext.cpp
 
 HEADERS  += mainwindow.h \
     gameboard.h \
@@ -37,7 +38,8 @@ HEADERS  += mainwindow.h \
     scorecontroller.h \
     movableobject.h \
     shipbullet.h \
-    explosion.h
+    explosion.h \
+    overlaytext.h
 
 RESOURCES = ressources.qrc
 
