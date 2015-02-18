@@ -1,0 +1,207 @@
+\hypertarget{classGame}{\section{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+}
+
+
+La classe \hyperlink{classGame}{Game} est une classe abstraite représentant base d'un jeu. Elle fournit les services de base pour controler un jeu \-:  
+
+
+
+
+{\ttfamily \#include $<$game.\-h$>$}
+
+Inheritance diagram for Game\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGame}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_aa56256a804a59c9031e6eb1fd9e70dc7}{void {\bfseries changed} ()}\label{classGame_aa56256a804a59c9031e6eb1fd9e70dc7}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGame_a76646df3c285c17da275919046f3724b}{Game} (const Q\-Size \&\hyperlink{classGame_aef028fef77b6498c42f347400b1ebf55}{size}, Q\-Object $\ast$parent)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGame}{Game} contruit un jeu. \end{DoxyCompactList}\item 
+\hypertarget{classGame_a3d9b98f7c4a96ecf578f75b96c9f0e90}{void \hyperlink{classGame_a3d9b98f7c4a96ecf578f75b96c9f0e90}{start} ()}\label{classGame_a3d9b98f7c4a96ecf578f75b96c9f0e90}
+
+\begin{DoxyCompactList}\small\item\em start démarre le jeu \end{DoxyCompactList}\item 
+\hypertarget{classGame_a4b507ab6c09910b3a621cf1980d65604}{void \hyperlink{classGame_a4b507ab6c09910b3a621cf1980d65604}{pause} ()}\label{classGame_a4b507ab6c09910b3a621cf1980d65604}
+
+\begin{DoxyCompactList}\small\item\em pause met le jeu en pause \end{DoxyCompactList}\item 
+\hypertarget{classGame_a39bb2fd26b5ea6b164f28f9f6723582e}{void \hyperlink{classGame_a39bb2fd26b5ea6b164f28f9f6723582e}{reset} ()}\label{classGame_a39bb2fd26b5ea6b164f28f9f6723582e}
+
+\begin{DoxyCompactList}\small\item\em reset stop le jeu et le réinitialise \end{DoxyCompactList}\item 
+\hypertarget{classGame_aff506ba208bd7428426e955e79bf3edb}{int {\bfseries get\-Score} () const }\label{classGame_aff506ba208bd7428426e955e79bf3edb}
+
+\item 
+\hypertarget{classGame_a9939ead6888ef512af8cace4a211b7b5}{void {\bfseries set\-Score} (int score)}\label{classGame_a9939ead6888ef512af8cace4a211b7b5}
+
+\item 
+const Q\-Size \& \hyperlink{classGame_aef028fef77b6498c42f347400b1ebf55}{size} () const 
+\begin{DoxyCompactList}\small\item\em size retourne la taille du jeu \end{DoxyCompactList}\item 
+virtual void \hyperlink{classGame_abac442d78efd636de9ab80f28eab92ef}{draw} (Q\-Painter \&painter)=0
+\begin{DoxyCompactList}\small\item\em draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées \end{DoxyCompactList}\item 
+virtual void \hyperlink{classGame_a90bb392d6ca1dd209388bf43a25ac0b2}{key\-Pressed} (int key)=0
+\begin{DoxyCompactList}\small\item\em key\-Pressed appélée quand l'utilisateur presse une touche \end{DoxyCompactList}\item 
+virtual void \hyperlink{classGame_adad85a1736ff369687f77695fecb8ffe}{key\-Released} (int key)=0
+\begin{DoxyCompactList}\small\item\em key\-Released appélée quand l'utilisateur relache une touche \end{DoxyCompactList}\item 
+bool \hyperlink{classGame_abb31098c8d016b98888fe9acac497fcb}{is\-Running} () const 
+\begin{DoxyCompactList}\small\item\em is\-Running retourne true si le jeu est lancé \end{DoxyCompactList}\item 
+\hypertarget{classGame_a63813e2be95eae3b03483c2918558fc7}{bool {\bfseries started} () const }\label{classGame_a63813e2be95eae3b03483c2918558fc7}
+
+\item 
+\hypertarget{classGame_a7fc0fd3e81b2425bb66d52453eda86e1}{bool {\bfseries is\-Over} () const }\label{classGame_a7fc0fd3e81b2425bb66d52453eda86e1}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a948ffd91069e102438caeb687e1be9be}{virtual void \hyperlink{classGame_a948ffd91069e102438caeb687e1be9be}{initialize} ()=0}\label{classGame_a948ffd91069e102438caeb687e1be9be}
+
+\begin{DoxyCompactList}\small\item\em initialize initialise ou réinitialise le jeu \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a82cbb333223a3f58c565743505d73cef}{int {\bfseries \-\_\-score}}\label{classGame_a82cbb333223a3f58c565743505d73cef}
+
+\item 
+\hypertarget{classGame_a6572aacd9897d20cc1bf61c58ff49e9a}{bool {\bfseries \-\_\-game\-Over}}\label{classGame_a6572aacd9897d20cc1bf61c58ff49e9a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe \hyperlink{classGame}{Game} est une classe abstraite représentant base d'un jeu. Elle fournit les services de base pour controler un jeu \-: 
+
+
+\begin{DoxyItemize}
+\item start/pause/reset
+\item gestion des évènements souris
+\item gestion des évènements clavier
+\item gestion de l'affichage 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGame_a76646df3c285c17da275919046f3724b}{\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\subsubsection[{Game}]{\setlength{\rightskip}{0pt plus 5cm}Game\-::\-Game (
+\begin{DoxyParamCaption}
+\item[{const Q\-Size \&}]{size, }
+\item[{Q\-Object $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{classGame_a76646df3c285c17da275919046f3724b}
+
+
+\hyperlink{classGame}{Game} contruit un jeu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & taille de la grille de jeu \\
+\hline
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGame_abac442d78efd636de9ab80f28eab92ef}{\index{Game@{Game}!draw@{draw}}
+\index{draw@{draw}!Game@{Game}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Game\-::draw (
+\begin{DoxyParamCaption}
+\item[{Q\-Painter \&}]{painter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classGame_abac442d78efd636de9ab80f28eab92ef}
+
+
+draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées 
+
+
+\begin{DoxyParams}{Parameters}
+{\em painter} & context d'affichage voir \href{http://doc.qt.io/qt-5/qpainter.html}{\tt la documentation Qt} \\
+\hline
+{\em size} & taille de la zone dans laquelle peindre le jeu \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMineStormGame_ae801bdab673e8ef94a768937b489624d}{Mine\-Storm\-Game}.
+
+\hypertarget{classGame_abb31098c8d016b98888fe9acac497fcb}{\index{Game@{Game}!is\-Running@{is\-Running}}
+\index{is\-Running@{is\-Running}!Game@{Game}}
+\subsubsection[{is\-Running}]{\setlength{\rightskip}{0pt plus 5cm}bool Game\-::is\-Running (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classGame_abb31098c8d016b98888fe9acac497fcb}
+
+
+is\-Running retourne true si le jeu est lancé 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classGame_a90bb392d6ca1dd209388bf43a25ac0b2}{\index{Game@{Game}!key\-Pressed@{key\-Pressed}}
+\index{key\-Pressed@{key\-Pressed}!Game@{Game}}
+\subsubsection[{key\-Pressed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Game\-::key\-Pressed (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classGame_a90bb392d6ca1dd209388bf43a25ac0b2}
+
+
+key\-Pressed appélée quand l'utilisateur presse une touche 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & code de la touche. Tous les codes sont disponible dans \href{http://doc.qt.io/qt-5/qt.html#Key-enum}{\tt la documentation Qt} \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMineStormGame_a242fd1067aad4a815fc0a8fe78a5fd58}{Mine\-Storm\-Game}.
+
+\hypertarget{classGame_adad85a1736ff369687f77695fecb8ffe}{\index{Game@{Game}!key\-Released@{key\-Released}}
+\index{key\-Released@{key\-Released}!Game@{Game}}
+\subsubsection[{key\-Released}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Game\-::key\-Released (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classGame_adad85a1736ff369687f77695fecb8ffe}
+
+
+key\-Released appélée quand l'utilisateur relache une touche 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & code de la touche. Tous les codes sont disponible dans \href{http://doc.qt.io/qt-5/qt.html#Key-enum}{\tt la documentation Qt} \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMineStormGame_af5e32b922f1560cea7d5c45efcd2755e}{Mine\-Storm\-Game}.
+
+\hypertarget{classGame_aef028fef77b6498c42f347400b1ebf55}{\index{Game@{Game}!size@{size}}
+\index{size@{size}!Game@{Game}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}const Q\-Size \& Game\-::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classGame_aef028fef77b6498c42f347400b1ebf55}
+
+
+size retourne la taille du jeu 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+game.\-h\item 
+game.\-cpp\end{DoxyCompactItemize}

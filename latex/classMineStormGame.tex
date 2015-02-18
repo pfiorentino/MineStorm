@@ -1,0 +1,99 @@
+\hypertarget{classMineStormGame}{\section{Mine\-Storm\-Game Class Reference}
+\label{classMineStormGame}\index{Mine\-Storm\-Game@{Mine\-Storm\-Game}}
+}
+Inheritance diagram for Mine\-Storm\-Game\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classMineStormGame}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMineStormGame_aacea8fd6a447213810e13d6a890b67e5}{{\bfseries Mine\-Storm\-Game} (const Q\-Size \&\hyperlink{classGame_aef028fef77b6498c42f347400b1ebf55}{size}, Q\-Object $\ast$parent=nullptr)}\label{classMineStormGame_aacea8fd6a447213810e13d6a890b67e5}
+
+\item 
+virtual void \hyperlink{classMineStormGame_ae801bdab673e8ef94a768937b489624d}{draw} (Q\-Painter \&painter)
+\begin{DoxyCompactList}\small\item\em draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées \end{DoxyCompactList}\item 
+void \hyperlink{classMineStormGame_a242fd1067aad4a815fc0a8fe78a5fd58}{key\-Pressed} (int key)
+\begin{DoxyCompactList}\small\item\em key\-Pressed appélée quand l'utilisateur presse une touche \end{DoxyCompactList}\item 
+void \hyperlink{classMineStormGame_af5e32b922f1560cea7d5c45efcd2755e}{key\-Released} (int key)
+\begin{DoxyCompactList}\small\item\em key\-Released appélée quand l'utilisateur relache une touche \end{DoxyCompactList}\item 
+\hypertarget{classMineStormGame_a7539c30ebd76c380b02b7a670e82e63e}{void {\bfseries generate\-Mines} (int small, int medium, int big)}\label{classMineStormGame_a7539c30ebd76c380b02b7a670e82e63e}
+
+\item 
+\hypertarget{classMineStormGame_a65140f427616478dcb7d8e8c38bb03a2}{void {\bfseries loose\-Life} ()}\label{classMineStormGame_a65140f427616478dcb7d8e8c38bb03a2}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMineStormGame_ae801bdab673e8ef94a768937b489624d}{\index{Mine\-Storm\-Game@{Mine\-Storm\-Game}!draw@{draw}}
+\index{draw@{draw}!MineStormGame@{Mine\-Storm\-Game}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void Mine\-Storm\-Game\-::draw (
+\begin{DoxyParamCaption}
+\item[{Q\-Painter \&}]{painter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMineStormGame_ae801bdab673e8ef94a768937b489624d}
+
+
+draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées 
+
+
+\begin{DoxyParams}{Parameters}
+{\em painter} & context d'affichage voir \href{http://doc.qt.io/qt-5/qpainter.html}{\tt la documentation Qt} \\
+\hline
+{\em size} & taille de la zone dans laquelle peindre le jeu \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classGame_abac442d78efd636de9ab80f28eab92ef}{Game}.
+
+\hypertarget{classMineStormGame_a242fd1067aad4a815fc0a8fe78a5fd58}{\index{Mine\-Storm\-Game@{Mine\-Storm\-Game}!key\-Pressed@{key\-Pressed}}
+\index{key\-Pressed@{key\-Pressed}!MineStormGame@{Mine\-Storm\-Game}}
+\subsubsection[{key\-Pressed}]{\setlength{\rightskip}{0pt plus 5cm}void Mine\-Storm\-Game\-::key\-Pressed (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMineStormGame_a242fd1067aad4a815fc0a8fe78a5fd58}
+
+
+key\-Pressed appélée quand l'utilisateur presse une touche 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & code de la touche. Tous les codes sont disponible dans \href{http://doc.qt.io/qt-5/qt.html#Key-enum}{\tt la documentation Qt} \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classGame_a90bb392d6ca1dd209388bf43a25ac0b2}{Game}.
+
+\hypertarget{classMineStormGame_af5e32b922f1560cea7d5c45efcd2755e}{\index{Mine\-Storm\-Game@{Mine\-Storm\-Game}!key\-Released@{key\-Released}}
+\index{key\-Released@{key\-Released}!MineStormGame@{Mine\-Storm\-Game}}
+\subsubsection[{key\-Released}]{\setlength{\rightskip}{0pt plus 5cm}void Mine\-Storm\-Game\-::key\-Released (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMineStormGame_af5e32b922f1560cea7d5c45efcd2755e}
+
+
+key\-Released appélée quand l'utilisateur relache une touche 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & code de la touche. Tous les codes sont disponible dans \href{http://doc.qt.io/qt-5/qt.html#Key-enum}{\tt la documentation Qt} \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classGame_adad85a1736ff369687f77695fecb8ffe}{Game}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+minestormgame.\-h\item 
+minestormgame.\-cpp\end{DoxyCompactItemize}
