@@ -48,8 +48,17 @@ public:
     void looseLife();
 
 private:
+    /**
+     * @brief Initialisation du jeu
+     */
     void initialize();
+    /**
+     * @brief Rajout de mines
+     */
     void repop();
+    /**
+     * @brief Le vaisseau tire !
+     */
     void fire();
 
     QPoint getRandomPoint() const;
