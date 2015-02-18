@@ -43,6 +43,7 @@ private:
     int _fireCounter;
     int _accelerationFactor;
     int _repopCounter;
+    int _cooldownRespawn;
 };
 
 #endif // MINESTORMGAME_H
