@@ -46,7 +46,7 @@ public:
      */
     bool toRemove() const;
 private:
-    int _currentSize; /*!
+    int _currentSize;
     int _maxSize; /*!< Taille maximale de l'explosion */
     QPoint _position;
     /**
