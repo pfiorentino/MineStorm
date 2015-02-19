@@ -7,7 +7,7 @@
 
 class Game;
 /**
- * @brief La class OverlayText définit un widget permettant l'affichage de texte par dessus l'écran de jeu comme "Pause" ou "Game Over"
+ * @brief La classe OverlayText définit un widget permettant l'affichage de texte par dessus l'écran de jeu comme "Pause" ou "Game Over"
  */
 class OverlayText : public QWidget
 {

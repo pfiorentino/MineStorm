@@ -37,7 +37,16 @@ public:
      */
     void reset();
 
+    /**
+     * @brief Permet de récupérer le score de la partie en cours
+     * @return le score
+     */
     int getScore() const;
+
+    /**
+     * @brief Permet de définir le score de la partie en cours
+     * @param le score
+     */
     void setScore(int score);
 
     /**
@@ -49,7 +58,6 @@ public:
     /**
      * @brief draw appelée pour afficher le jeu. Cette méthode doit être implémentée par les classes dérivées
      * @param painter context d'affichage voir [la documentation Qt](http://doc.qt.io/qt-5/qpainter.html)
-     * @param size taille de la zone dans laquelle peindre le jeu
      */
     virtual void draw(QPainter &painter) = 0;
 
@@ -67,20 +75,36 @@ public:
     virtual void keyReleased( int key ) = 0;
 
     /**
-     * @brief isRunning retourne true si le jeu est lancé
+     * @brief isRunning retourne true si le jeu est actuellement en train de tourner
      * @return
      */
     bool isRunning() const;
 
+    /**
+     * @brief started retourne true si la partie a été lancée (mais peut être en pause)
+     * @return
+     */
     bool started() const;
 
+    /**
+     * @brief isOver retourne si la partie est perdue
+     * @return
+     */
     bool isOver() const;
 protected:
     /**
      * @brief initialize initialise ou réinitialise le jeu
      */
     virtual void initialize() = 0;
+
+    /**
+     * @brief _score : le score de la partie en cours
+     */
     int _score;
+
+    /**
+     * @brief _gameOver : true si la partie est perdue
+     */
     bool _gameOver;
 
 signals:

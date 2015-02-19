@@ -210,7 +210,7 @@ void MineStormGame::keyReleased( int key ) {
             break;
         case Qt::Key_Down:
             _downKeyDown = false;
-            _ship->stop();
+            //_ship->stop();
         break;
         case Qt::Key_Space:
         case Qt::Key_Control:

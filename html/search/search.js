@@ -7,10 +7,11 @@
 
 var indexSectionsWithContent =
 {
-  0: "dgiklmoprs",
-  1: "glmos",
-  2: "dgiklprs",
-  3: "m"
+  0: "_adegiklmoprst~",
+  1: "eglmos",
+  2: "adegiklmprst~",
+  3: "_",
+  4: "m"
 };
 
 var indexSectionNames =
@@ -18,7 +19,8 @@ var indexSectionNames =
   0: "all",
   1: "classes",
   2: "functions",
-  3: "pages"
+  3: "variables",
+  4: "pages"
 };
 
 function convertToId(search)

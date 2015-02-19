@@ -16,52 +16,68 @@ class MineStormGame : public Game {
 public:
     /**
      * @brief Constructeur
-     * @param size
-     * @param parent
+     * @param size : taille de la zone de jeu
+     * @param parent : QWidget parent
      */
     MineStormGame(const QSize &size, QObject *parent = nullptr);
+
     /**
      * @brief draw
      * @param painter
      */
     virtual void draw(QPainter &painter);
+
     /**
-     * @brief Teste l'appuie sur une touche
-     * @param key la touche testée
+     * @brief Appelée lorsqu'une touche est appuyée
+     * @param key : touche pressée
      */
     void keyPressed( int key );
+
     /**
-     * @brief Teste le relachement de la touche
-     * @param key la touche testée
+     * @brief Appelée lorsqu'une touche est relâchée
+     * @param key : touche relâchée
      */
     void keyReleased( int key );
+
     /**
-     * @brief Création des mines
-     * @param small Nombre de petites mines
-     * @param medium Nombre de mines moyennes
-     * @param big Nombre de grandes mines
+     * @brief Permet de générer des mines disposées aléatoirement
+     * @param small : Nombre de petites mines
+     * @param medium : Nombre de mines moyennes
+     * @param big : Nombre de grandes mines
      */
     void generateMines(int small, int medium, int big);
+
     /**
-     * @brief Decremente le nombre de vie si il en reste, sinon Game Over
+     * @brief Décrémente le compteur de vie si il en reste, sinon Game Over
      */
     void looseLife();
 
 private:
     /**
-     * @brief Initialisation du jeu
+     * @brief Initialise le jeu
      */
     void initialize();
+
     /**
-     * @brief Rajout de mines
+     * @brief Rajoute de mines (appelé toutes les 30 secondes)
      */
     void repop();
+
     /**
-     * @brief Le vaisseau tire !
+     * @brief Ajoute une Bullet à l'affichage
      */
     void fire();
 
+    /**
+     * @brief Renvoie un point aléatoire à l'écran
+     * @return QPoint aléatoire
+     */
     QPoint getRandomPoint() const;
+
+    /**
+     * @brief Dessine les vies restantes à l'écran
+     * @param painter
+     */
     void drawLives(QPainter &painter) const;
 
     SpaceShip *_ship;

@@ -9,12 +9,17 @@
 
 class Game;
 /**
- * @brief La class GameBoard définit un widget permettant l'affichage du jeu. Elle gère également les évènements clavier
+ * @brief La classe GameBoard définit un widget permettant l'affichage du jeu. Elle gère également les évènements clavier
  */
 class GameBoard : public QWidget
 {
     Q_OBJECT
 public:
+    /**
+     * @brief constructeur du GameBoard
+     * @param game partie en cours
+     * @param parent
+     */
     explicit GameBoard(Game *game, QWidget *parent = 0);
 
 signals:

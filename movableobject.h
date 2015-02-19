@@ -13,9 +13,9 @@ class MovableObject
 public:
     /**
      * @brief Constructeur de MovableObject
-     * @param position : définie la position du MovableObject dans le jeu
+     * @param position : définit la position du MovableObject dans le jeu
      * @param speed : vitesse du MovableObject
-     * @param direction : direction du MovableObject
+     * @param direction : sens de déplacement du MovableObject
      */
     MovableObject(QPoint position = QPoint(120, 120), int speed = 0, int direction = 0);
 

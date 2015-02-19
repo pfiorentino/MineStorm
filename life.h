@@ -5,7 +5,7 @@
 #include<iostream>
 
 /**
- * @brief La classe affiche les vies restantes
+ * @brief La classe Life gère la construction et l'affichage de l'objet "vie" du jeu (vaisseau miniature)
  */
 class Life
 {
@@ -15,6 +15,7 @@ public:
      * @param position
      */
     Life(QPoint position);
+
     /**
      * @brief Méthode d'affichage
      * @param painter

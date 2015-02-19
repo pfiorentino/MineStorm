@@ -29,11 +29,11 @@ public:
      */
     void rotateRight();
     /**
-     * @brief Fait accelerer le vaisseau selon la variable d'acceleration
+     * @brief Fait accelerer le vaisseau selon la variable d'accélération
      */
     void accelerate();
     /**
-     * @brief Reinitialise la variable d'acceleration
+     * @brief Réinitialise la variable d'accélération
      */
     void stopAcceleration();
     /**

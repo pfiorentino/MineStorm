@@ -4,7 +4,7 @@
 #include <QPainter>
 
 /**
- * @brief Classe gérant les explosions
+ * @brief La classe Explosion gère la définition et l'affichage des explosions
  */
 
 class Explosion
@@ -15,7 +15,7 @@ public:
      *
      * Constructeur de la classe Explosion
      *
-     * @param size : taille de l'explosion
+     * @param size : taille souhaitée de l'explosion
      * @param position : position du centre sur l'écran
      */
     Explosion(int size, QPoint position);
@@ -35,25 +35,20 @@ public:
     void draw(QPainter &painter);
 
     /**
-     * @brief Getter de polygon
-     * @return Renvoie le QPolygon
+     * @brief Renvoie le QPolygon représentant l'explosion
+     * @return le QPolygon
      */
     QPolygon getPolygon();
 
     /**
-     * @brief Méthode test de la taille
-     * @return True si la taille actuelle est la taille max, False sinon
+     * @brief Vérifie si l'explosion a atteint sa taille maximale en vue de l'effacer de l'écran
+     * @return true si la taille finale est atteinte, false sinon
      */
     bool toRemove() const;
 private:
     int _currentSize;
-    int _maxSize; /*!< Taille maximale de l'explosion */
+    int _maxSize; /* Taille finale de l'explosion */
     QPoint _position;
-    /**
-     * @brief Récupération de position
-     * @param relativePoint : point à tester
-     * @return La position du point selon la taille actuelle de l'explosion
-     */
     QPoint getAbsolutePoint(QPoint relativePoint) const;
 };
 
